@@ -1,0 +1,32 @@
+.view-lalbel {
+    font-size: medium;
+    color: #212121;
+    font-weight: 500;
+  }
+  
+  .table-data {
+    font-size: small;
+    color: #212121;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  
+  .fty > tr:nth-child(even) {
+    background-color: #ddef90;
+  
+  }
+  .fty tr
+  {
+  
+    border: 1px solid black;
+    padding: 2px;
+  
+  }
+  .fty > th {
+    border-bottom: 1px solid rgb(36, 21, 21);
+  }
+  .fty td, th {
+    padding: 5px;
+  }
+  

@@ -1,0 +1,128 @@
+
+ <div *ngIf="this.load_lag_action == 0">
+  <app-data-loader> </app-data-loader>
+</div>
+
+
+
+<div class="row" *ngIf="this.load_lag_action == 1">
+    <div class="col-md-12" style="float: right; text-align: center">
+  <button  style="float: right;" mat-icon-button color="primary" aria-label="Add" (click)="closeFunction()" matTooltip="close">
+    <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div class="col-md-12" style="background-color:  rgb(235 235 235);text-align: center;font-size: 20px;
+font-weight: bold;">
+  <label> Work Splits Details  </label>
+</div>
+
+
+<div class="col-md-12">
+  <div class="row">
+  <div class="col-md-3" style="    text-align: center;
+  font-size: small;
+  font-weight: bold;">
+
+    Paper in Hand :  <label>  {{ paper_in_hand }} </label>
+
+  </div>
+
+  <div class="col-md-3" style="    text-align: center;
+  font-size: small;
+  font-weight: bold;" >
+    Released Paper Qty :   <label>  {{relesed_paper_qty}} </label>
+    </div>
+
+  <div class="col-md-3" style="    text-align: center;
+  font-size: small;
+  font-weight: bold;" >
+    Remaining Paper Qty :   <label>  {{remaining_paper_qty}} </label>
+  </div>
+
+  <div class="col-md-3" style="    text-align: center;
+  font-size: small;
+  font-weight: bold;" >
+   Copies to print:   <label>  {{this.data_2.Qty_splited}} </label>
+  </div>
+
+
+
+</div>
+</div>
+
+<br>
+
+
+
+<div class="col-md-12">
+
+  <div class="row">
+    <div class="col-md-12" style=" text-align: center;
+    font-size: 16px;
+    font-weight: bold;"> <label style="text-decoration: underline;">Machine Reading</label> </div>
+
+
+<div class="col-auto">
+
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Start</div>
+    </div>
+    <input type="number"   [(ngModel)]="start"  style="border: 1px solid;border-radius: 5px;text-align: center;"
+     class="form-control" id="inlineFormInputGroup" placeholder="Start">
+
+  </div>
+</div>
+
+<div class="col-auto">
+
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <div class="input-group-text">End</div>
+    </div>
+    <input type="number"   [(ngModel)]="end"  style="border: 1px solid;border-radius: 5px;text-align: center;"
+     class="form-control" id="inlineFormInputGroup" placeholder="end">
+
+  </div>
+</div>
+
+
+
+<div class="col-auto">
+
+  <button *ngIf="save_flag == 1"
+  class="btn btn-primary mb-2"   matTooltip="Save Machine Readings" (click)="Save()"> Save </button>
+
+  <button  *ngIf="save_flag == 2" class="buttonload btn pull-right">
+    <i class="fa fa-spinner fa-spin"></i>Saving...
+  </button>
+
+  <button [disabled]="true" *ngIf="save_flag == 3" class="btn btn-warning pull-right"
+   type="button"><span class="glyphicon glyphicon-ok"></span> Forwarded. </button>
+
+
+
+</div>
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+

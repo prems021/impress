@@ -1,0 +1,96 @@
+
+
+
+
+ <div *ngIf="this.load_lag == 0">
+    <app-data-loader> </app-data-loader>
+      </div>
+
+      <div *ngIf="this.load_lag != 0">
+
+        <small class="mb-2">You can use comma separator, to filter by more than one values.</small>
+        <div class="columns">
+        <div class="column col-12">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-3 col-sm-12 col-ml-auto">
+                <input
+                  class="form-input"
+                  type="text"
+                  id="globalSearch"
+                  (input)="onChange($event)"
+                  placeholder="Search"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+
+  <div class="column col-12">
+    <ngx-table [configuration]="configuration" [data]="list_data" #table [columns]="columns_new_work" [detailsTemplate]="detailsTemplate">
+
+      <ng-template let-row let-index="index">
+        <td>
+          <div class="font-small">  {{ row.workNo }}</div>
+        </td>
+        <td>
+          <span class="font-small">{{ row.workName }}</span>
+        </td>
+        <td>
+          <span class="font-small">{{ row.orderDate }}</span>
+        </td>
+
+          <td>
+            <span class="font-small">{{ row.type }}</span>
+        </td>
+
+     <td>
+          <button   class="btn btn-primary btn-sm" (click)="showModal(row)">
+            View
+          </button>
+
+        </td>
+
+
+
+      </ng-template>
+
+      <ng-template #detailsTemplate let-rowd let-indexd="index">
+        <div class="row">
+
+         <div class="col-md-6">
+            <h2 class="color-green">
+         Paper : {{ rowd.Papertype }}  {{ rowd.Size }} {{ rowd.Gsm }} &nbsp;  Paper Type : {{rowd.paper_category}}  </h2>
+
+          <label style="font-size: medium;color: #8b731d;">  Paper Delivery Status :  {{ rowd.paper_status }}</label> <br>
+        Requested Qty :   {{ rowd.paper_qty_req }}  &nbsp;  &nbsp;   Released Qty :  {{ rowd.paper_qty_released }}  &nbsp;  &nbsp;  Company : {{rowd.Paper_company}}
+        </div>
+
+                    <div class="col-md-6">
+
+                    </div>
+
+         </div>
+
+         <br>
+
+      <div>
+        <button *ngIf="rowd.push_b == 1"
+        class="btn btn-success btn-sm"    (click)="View_machines($event, indexd,rowd)"> View Machine Splits  </button>
+
+        <button  *ngIf="rowd.push_b == 2" class="buttonload btn pull-right">
+          <i class="fa fa-spinner fa-spin"></i>Saving...
+        </button>
+
+        <button [disabled]="true" *ngIf="rowd.push_b == 3" class="btn btn-warning pull-right"
+         type="button"><span class="glyphicon glyphicon-ok"></span> Forwarded. </button>
+
+      </div>
+      </ng-template>
+    </ngx-table>
+  </div>
+
+
+  </div>
+
