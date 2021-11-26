@@ -1,0 +1,243 @@
+
+
+
+
+
+<!-- <li  *ngxPermissionsOnly="['Admin']" class="sidelist"><a [routerLink]="['/Pressoffice/newjob']" routerLinkActive="active"><i class="fa fa-folder-o" aria-hidden="true"></i>
+    <span class="myFont home-font">New Work</span></a></li>
+
+
+<li  *ngxPermissionsOnly="['CounterStaff']" class="sidelist"><a [routerLink]="['/Pressoffice/newjob']" routerLinkActive="active"><i class="fa fa-folder-o" aria-hidden="true"></i>
+    <span class="myFont home-font">New counter</span></a></li> -->
+
+
+
+
+
+    <div>
+        <h4 class="mb-4 text-muted">Dashboard </h4>
+
+
+
+        <div class="row">
+
+
+
+          <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+              <div class="card-body">
+                <div class="card-innerBody d-flex align-items-center">
+                  <div class="card-icon text-light">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                  </div>
+                  <div class="ml-auto">
+                    <p class="card-label text-right text-muted">Customers</p>
+                    <h2 class="card-text text-right ">{{this.customersno}}</h2>
+
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex ">
+                <small class="text-muted">
+                  <a  matTooltip="Add New customer"
+                    matTooltipClass="example-tooltip-red1"   data-target="#addModal"  style="float: right;cursor: pointer;"   data-toggle="modal"   (click)="add_customer()" >
+                    <i class="fa fa-plus-circle"></i>  Add   </a>
+                </small>
+                &nbsp; &nbsp;
+
+                <small class="text-muted">
+                  <a   matTooltip="Update customer"
+                     data-target="#addModal"  style="float: right;cursor: pointer;"   data-toggle="modal"   (click)="update_customer()" >
+                    <i class="fa fas fa-edit"></i>  Edit   </a>
+                </small>
+
+
+                <small class="text-danger ml-auto">
+                  <button matTooltip="View customer list" (click)="cust_view()"
+                    style="background: none;border: none;color:rgb(31, 16, 83)">
+                     View  <i class="fa fa-caret-down"  style="color: #ba892e;" aria-hidden="true"></i>
+                  </button>
+                </small>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+              <div class="card-body">
+                <div class="card-innerBody d-flex align-items-center">
+                  <div class="card-icon text-light">
+                    <img _ngcontent-emq-c53="" src="../../../assets/images/vendor.png" style="width: 58px; height: 50px;">
+                  </div>
+                  <div class="ml-auto">
+                    <p class="card-label text-right text-muted">Vendors</p>
+                    <h2 class="card-text text-right ">{{this.vendorsno}}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex ">
+                <small class="text-muted">
+                  <a    data-target="#addModal"  style="float: right;cursor: pointer;"   data-toggle="modal"   (click)="add_vendor()" >
+                    <i class="fa fa-plus-circle"></i>  Add   </a>
+                </small>
+                &nbsp; &nbsp;
+
+                <small class="text-muted">
+                  <a    data-target="#addModal"  style="float: right;cursor: pointer;"   data-toggle="modal"   (click)="update_vendor()" >
+                    <i class="fa fas fa-edit"></i>  Edit   </a>
+                </small>
+
+
+                <small class="text-danger ml-auto">
+                  <button (click)="vendor_view()"
+                    style="background: none;border: none;color:rgb(31, 16, 83)">
+                     View  <i class="fa fa-caret-down"  style="color: #ba892e;" aria-hidden="true"></i>
+                  </button>
+                </small>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+              <div class="card-body">
+                <div class="card-innerBody d-flex align-items-center">
+                  <div class="card-icon text-light">
+                    <img _ngcontent-emq-c53="" src="../../../assets/images/product.png" style="width: 58px; height: 50px;">
+                    <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+                  </div>
+                  <div class="ml-auto">
+                    <p class="card-label text-right text-muted">Assets</p>
+                    <h2 class="card-text text-right ">{{this.assetsno}}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex ">
+                <small class="text-muted">
+                  <a    data-target="#addModal"  style="float: right;cursor: pointer;"   data-toggle="modal"   (click)="add_assets()" >
+                    <i class="fa fa-plus-circle"></i>  Add   </a>
+                </small>
+                &nbsp; &nbsp;
+
+                <small class="text-muted">
+                  <a    data-target="#addModal"  style="float: right;cursor: pointer;"   data-toggle="modal"   (click)="update_assets()" >
+                    <i class="fa fas fa-edit"></i>  Edit   </a>
+                </small>
+
+
+                <small class="text-danger ml-auto">
+                  <button (click)="asset_view()"
+                    style="background: none;border: none;color:rgb(31, 16, 83)">
+                     View  <i class="fa fa-caret-down"  style="color: #ba892e;" aria-hidden="true"></i>
+                  </button>
+                </small>
+              </div>
+            </div>
+          </div>
+
+
+
+          </div>
+
+          <span style='color:  #000000;'><span style='font-family: Anton, Verdana, Cambria;
+            font-size: 20px;
+            background-color: #060644;
+            padding-top: 33px;
+            padding-bottom: 0px;'>
+           <span style='font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;
+            font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;
+             text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;
+              text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;'>
+              <marquee behavior='scroll' direction='left'>
+            <h2 style="color:#a7fda9"> Updates  >>  Invoice Edit added ....  next update will be purchase entry </h2>
+
+
+              </marquee>
+              </span>
+              </span>
+              </span>
+
+
+
+          </div>
+
+
+  <div class="container mainclass"  style="margin-bottom:100px;" *ngIf="flag == 1">
+    <h3 class="text-center" style="    background-color: powderblue;">Customers List</h3>
+    <br />
+
+    <ngx-table
+      tableClass="table table-striped table-bordered table-hover table-responsive-sm"
+      [configuration]="configuration"
+      [data]="data_customer"
+      [columns]="columns_customer"
+      (event)="onEvent_customer($event)"
+    >
+    </ngx-table>
+  </div>
+
+  <div class="container mainclass"  style="margin-bottom:100px;" *ngIf="flag == 2">
+    <h3 class="text-center" style="    background-color: powderblue;">Vendors List</h3>
+    <br />
+
+    <ngx-table
+      tableClass="table table-striped table-bordered table-hover table-responsive-sm"
+      [configuration]="configuration"
+      [data]="data_vendors"
+      [columns]="columns_customer"
+      (event)="onEvent_vendor($event)"
+    >
+    </ngx-table>
+  </div>
+
+  <div class="container mainclass"  style="margin-bottom:100px;" *ngIf="flag == 3">
+    <h3 class="text-center" style="    background-color: powderblue;">Assets List</h3>
+    <br />
+
+    <ngx-table
+      tableClass="table table-striped table-bordered table-hover table-responsive-sm"
+      [configuration]="configuration"
+      [data]="data_assets"
+      [columns]="columns_assets"
+      (event)="onEvent_vendor($event)"
+    >
+    </ngx-table>
+  </div>
+
+
+
+
+
+
+
+          <div class="modal" id="addModal" [style.display]="this.api.displayModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+
+
+
+                        <a class="close"  style="float: right;cursor: pointer;font-size: large;"  data-dismiss="modal"   (click)="hide()" >
+                       <i class="fa fa-window-close"></i>      </a>
+
+
+
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+
+
+
+
+
+
+                </div>
+                <div class="modal-footer"></div>
+              </div>
+            </div>
+          </div>

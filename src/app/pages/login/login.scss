@@ -1,0 +1,74 @@
+#login {
+    background-image: url("../../../assets/images/imbg.jpg");
+    height: 100vh;
+
+    width: 100vw;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+  }
+  #login .container #login-row #login-column .login-box {
+
+    max-width: 600px;
+    height: 320px;
+    border: 1px solid #9C9C9C;
+    background-image: linear-gradient(to bottom, #aec1c3, #a9b5b7, #bcc5c6, #cfd5d5, #e3e5e5);
+  }
+  #login .container #login-row #login-column .login-box #login-form {
+    padding: 20px;
+  }
+  #login .container #login-row #login-column .login-box #login-form #register-link {
+    margin-top: -85px;
+  }
+  .text-info {
+    color: #02052b!important;
+    font-weight: bolder;
+  }
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 5px 0;
+    position: relative;
+  }
+
+  img.avatar {
+    width: 20%;
+    border-radius: 50%;
+  }
+  .heading {
+    /* font-size: 50px;
+    text-shadow: 4px 4px 0px red;
+    mix-blend-mode: screen; */
+    animation: fadeIn 2.5s linear forwards;
+  }
+
+
+
+  @keyframes fadeIn {
+      0% {
+          opacity: 0
+      }
+
+      100% {
+          opacity: 7;
+      }
+  }
+  h1
+  {
+    color: #170c50!important;
+  }
+  .ny
+  {
+    color: #e4f7f7;
+    background-color: #321d46;
+    border-color: #042025;
+  }
+  .btn:hover
+  {
+    background-color: rgb(2, 2, 17);
+  }
+  body
+  {
+  padding-top: 0px !important;
+  }
