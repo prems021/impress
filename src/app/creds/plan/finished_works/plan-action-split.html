@@ -1,0 +1,49 @@
+
+
+
+
+
+<div *ngIf="view_table_sub == 0">
+  <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+  
+
+    <app-data-loader> </app-data-loader>
+ </div>
+
+
+
+
+
+
+
+    
+<div *ngIf="view_table_sub == 2">    
+    
+  <table  class="table table-striped">
+      <thead class="thead-default"><tr> 
+          <th>   Si  </th> 
+        <th>   Type  </th> 
+        <th> Machine  </th>
+        <th> Paper Qty  </th>
+        <th> Plate No  </th>
+        <th> Remarks </th>
+    
+
+
+
+    </tr> </thead>
+
+      <tbody>
+        <tr  *ngFor="let itemz of this.papersub; let k3 = index">
+          <td>   {{k3+1}}   <!-- {{itemz.id}} --> </td>
+          <td> {{ itemz.printplace }}</td>
+          <td> {{ itemz.machine }}</td>
+          <td> {{ itemz.qty_splitted }}</td>
+          <td> {{ itemz.plates }}</td>
+          <td> {{ itemz.remarks }}</td>
+      
+
+        </tr>
+      </tbody>
+    </table>
+  </div>

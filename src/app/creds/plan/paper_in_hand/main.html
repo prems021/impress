@@ -1,0 +1,106 @@
+
+
+<!--
+<div *ngIf="load_flag == 0">
+  <app-data-loader> </app-data-loader>
+    </div> -->
+
+
+<!--
+    <div *ngIf="load_flag == 1">
+      <small class="mb-2">You can use comma separator, to filter by more than one values.</small>
+      <div class="columns">
+      <div class="column col-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-3 col-sm-12 col-ml-auto">
+              <input
+                class="form-input"
+                type="text"
+                id="globalSearch"
+                (input)="onChange($event)"
+                placeholder="Search"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="column col-12">
+        <ngx-table [configuration]="configuration" [data]="data_new_work" #tabless [columns]="columns_new_work" >
+
+          <ng-template let-row let-index="index">
+            <td>
+              <div class="font-small">  {{ row.building }}</div>
+            </td>
+            <td>
+              <span class="font-small">{{ row.paper_type }}</span>
+            </td>
+
+            <td>
+              <span class="font-small">{{ row.paperName }}</span>
+            </td>
+
+
+            <td>
+              <span class="font-small">{{ row.Qty }}</span>
+            </td>
+
+
+
+          </ng-template>
+        </ngx-table>
+      </div>
+      </div>
+      </div> -->
+
+
+
+
+
+
+
+      <small class="mb-2">You can use comma separator, to filter by more than one values.</small>
+      <div class="columns">
+      <div class="column col-12">
+        <form class="form-horizontal"  [formGroup]="searchForm">
+          <div class="form-group">
+            <div class="col-3 col-sm-12 col-ml-auto">
+              <input
+                class="form-input"
+                type="text"  formControlName="Key_code"
+                id="globalSearch"
+                (keyup)="onChange()"
+                placeholder="Search"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="column col-12">
+        <ngx-table [configuration]="configuration" [data]="data_new_work" #table [columns]="columns_new_work" >
+
+          <ng-template let-row>
+            <td>
+              <div class="font-small">  {{ row.building }}</div>
+            </td>
+            <td>
+              <span class="font-small">{{ row.paper_type }}</span>
+            </td>
+
+            <td>
+              <span class="font-small">{{ row.paperName }}</span>  </td>
+              <td>
+                <span class="font-small">{{ row.Qty }}</span>
+              </td>
+
+          </ng-template>
+
+        </ngx-table>
+      </div>
+      </div>
+
+
+
+
+
+

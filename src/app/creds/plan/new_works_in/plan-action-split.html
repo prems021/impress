@@ -1,0 +1,194 @@
+
+
+
+
+
+<div *ngIf="view_table_sub == 0">
+  <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+
+    <app-data-loader> </app-data-loader>
+ </div>
+
+ <div *ngIf="view_table_sub == -1">
+  <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+    <div class="empty_state">
+        <i class='fas fa-sad-tear' style='color: teal;
+        font-size: 36px;'></i>
+        <h3 class="">No Splits</h3>
+        <p>There have been no Splits in this paper yet</p>
+        <button (click)="add_new_()">
+            Add New</button>
+      </div>
+ </div>
+
+
+
+ <section style="height:100%;"  id="non-printable" *ngIf="view_table_sub == 1 || view_table_sub == 2">
+
+  <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+  <br>
+
+  <form  [formGroup]="machine_form">
+
+    <table>
+
+      <thead class="thead-default">
+        <tr>
+        <th>   Type  </th>
+        <th> Machine  </th>
+        <th> Paper Qty  </th>
+        <th> Plate Size  </th>
+
+        <th> Plate No  </th>
+
+        <th> Remarks </th>
+        <th>  </th>
+      </tr>
+    </thead>
+
+      <tbody>
+        <tr>
+
+
+
+
+      <td style="width: 18%;">
+        <mat-form-field style="width: 90%">
+        <mat-label>Print type</mat-label>
+        <mat-select formControlName="print_type" (selectionChange) ="getmachines()" >
+
+          <mat-option value="Sheet B/W">Sheet B/W</mat-option>
+          <mat-option value="Sheet Colour">Sheet Colour</mat-option>
+          <mat-option value="Sheet Extra B/W">Sheet Extra B/W</mat-option>
+          <mat-option value="Sheet Cover Colour">Sheet Cover Colour</mat-option>
+          <mat-option value="Web B/W">Web B/W</mat-option>
+          <mat-option value="Web Two Colour">Web Two Colour</mat-option>
+          <mat-option value="Digital Laser B/W">Digital Laser B/W</mat-option>
+          <mat-option value="Digital Laser Colour">Digital Laser Colour</mat-option>
+          <mat-option value="Risso B/W">Risso B/W</mat-option>
+          <mat-option value="Screen Printing Single">Screen Printing Single</mat-option>
+        </mat-select><mat-error>Please select a type</mat-error>
+        </mat-form-field><br>
+
+      </td>
+
+
+      <td style="width: 18%;">
+        <mat-form-field class="example-full-width" style="width: 90%">
+          <input type="text"
+            placeholder="Machines"
+            aria-label="Number"
+            matInput
+            formControlName="Machine"
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor ="let list of machines" [value]="list">
+              {{list}}
+            </mat-option>
+          </mat-autocomplete> <mat-error>Please select a Machine</mat-error>
+        </mat-form-field><br>
+
+      </td>
+
+      <td style="width: 18%;text-align: center;">
+        <mat-form-field class="example-full-width" style="width: 60%">
+          <mat-label>No of Paper</mat-label>
+          <input matInput placeholder="Quantity" formControlName="Qty_alloted" type="number" autocomplete="off" numbersOnly>
+        <mat-error>Please Enter paper Quantity</mat-error>
+        </mat-form-field>
+        <br>
+
+      </td>
+
+
+      <td style="width: 18%;">
+        <mat-form-field style="width: 90%">
+        <mat-label>Plate Size</mat-label>
+        <mat-select formControlName="plate_size">
+
+          <mat-option value="945 * 700 mm">945 * 700 mm</mat-option>
+          <mat-option value="590 * 745 mm">590 * 745 mm </mat-option>
+          <mat-option value="522 * 640 mm">522 * 640 mm</mat-option>
+          <mat-option value="770 * 927 mm">770 * 927 mm</mat-option>
+          <mat-option value="530 * 650 mm">530 * 650 mm</mat-option>
+          <mat-option value="497 * 620 mm">497 * 620 mm</mat-option>
+          <mat-option value="890 * 586 mm">890 * 586 mm</mat-option>
+
+        </mat-select><mat-error>Please select a size</mat-error>
+        </mat-form-field><br>
+
+      </td>
+
+
+
+
+      <td style="width: 15%;text-align: center;">
+        <mat-form-field class="example-full-width" style="width: 60%">
+          <mat-label>Plates Number</mat-label>
+          <input matInput placeholder="Plates" type="number"  formControlName="Plates" autocomplete="off">
+          <mat-error>Please Enter Plate value </mat-error>
+        </mat-form-field>
+
+        <br>
+
+      </td>
+
+      <td style="width: 30%;"> <textarea style="width: 90%;height: 50px;border: 2px dotted #5e5780;border-radius: 5px;min-width: 150px;"
+         matInput formControlName="remark" placeholder="Enter notes..."></textarea>
+
+        <br>
+
+      </td>
+
+      <td style="width: 6%;">
+        <button  matTooltip="Add to split" (click)="submitForm()"  class="float-left" mat-icon-button color="primary" aria-label="Add">
+          <mat-icon>add_circle_outline</mat-icon> </button>
+      </td>
+
+
+    </tr>
+
+
+
+    </table>
+
+    </form>
+
+  </section>
+
+
+
+<div *ngIf="view_table_sub == 2">
+
+  <table  class="table table-striped">
+      <thead class="thead-default"><tr>
+          <th>   Si  </th>
+        <th>   Type  </th>
+        <th> Machine  </th>
+        <th> Paper Qty  </th>
+        <th> Plate Size  </th>
+        <th> Plate No  </th>
+        <th> Remarks </th>
+        <th>  </th>
+
+
+
+    </tr> </thead>
+
+      <tbody>
+        <tr  *ngFor="let itemz of this.papersub; let k3 = index">
+          <td>   {{k3+1}}   <!-- {{itemz.id}} --> </td>
+          <td> {{ itemz.printplace }}</td>
+          <td> {{ itemz.machine }}</td>
+          <td> {{ itemz.qty_splitted }}</td>
+          <td> {{ itemz.plate_size }}</td>
+          <td> {{ itemz.plates }}</td>
+          <td> {{ itemz.remarks }}</td>
+          <td>   <button  matTooltip="Remove split"  class="float-left" mat-icon-button color="warn" aria-label="Add"
+            (click)="remove_split(itemz.id)"> <mat-icon>delete</mat-icon> </button>  </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>

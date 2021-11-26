@@ -1,0 +1,146 @@
+
+
+
+
+<section class="mobile _all_mobile">
+
+    <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+    <div *ngIf="load_flag == 0">
+      <app-data-loader> </app-data-loader>
+        </div>
+
+
+
+  </section>
+
+  <section class="desk _all_desk">
+
+    <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+
+
+
+  <div *ngIf="load_flag == 0">
+    <app-data-loader> </app-data-loader>
+      </div>
+
+
+
+
+    <section style="height:100%;"  id="non-printable" *ngIf="this.ia>0">
+
+      <form class="horizontal" [formGroup]="workform">
+
+      <table class="table" style="width: 100%;text-align:center;">
+
+        <thead>
+          <tr style="color: #000000;
+          background-color: #bca3ed;
+          height: 4px;
+          font-size: small;
+          text-align: center;
+          font-family: sans-serif;">
+            <th scope="col">#</th>
+            <th scope="col">Paper Name</th>
+            <th style="width: 10%;">Paper Type </th>
+            <th> Printing Location </th>
+            <th> Cutting Location </th>
+
+            <th scope="col">Qty Needed </th>
+            <th scope="col">Advance cut </th>
+            <th scope="col">Split </th>
+            
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+
+         <tbody>
+          <tr *ngFor="let item of this.res_data.data.rows; let k=index " style="height:3px;">
+            <td> {{k+1}} </td>
+
+            <td style="font-size: medium;color: blue;min-width: 120px;"> {{item.Paper_master.Papertype }} {{item.Paper_master.Gsm }} {{item.Paper_master.Size }}  </td>
+
+            <td style="width:12%">
+            
+             <div *ngIf="item.status_flag == 1">
+              <div *ngIf="item.paper_category_id == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Roll</div>
+              <div *ngIf="item.paper_category_id == 2" style="color: rgb(44, 20, 100); font-weight: 500;">Sheet</div>  </div>
+            </td>
+            <td style="width:12%">
+          
+            <div *ngIf="item.status_flag == 1">
+              <div *ngIf="item.print_building == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Main Building </div>
+              <div *ngIf="item.print_building == 2" style="color: rgb(44, 20, 100); font-weight: 500;"> Annex Building</div>  </div>
+
+          </td>
+
+
+          <td style="width:12%">
+            
+         
+            <div *ngIf="item.status_flag == 1">
+              <div *ngIf="item.cut_building == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Main Building </div>
+              <div *ngIf="item.cut_building == 2" style="color: rgb(44, 20, 100); font-weight: 500;"> Annex Building</div>  </div>
+          </td>
+
+          <td style="width:8%">
+     
+
+          <div *ngIf="item.status_flag == 1" style="color: rgb(44, 20, 100); font-weight: 500;">
+
+            {{item.quantity}}
+          </div>
+         
+          </td>
+
+          <td style="width:8%">
+              
+          
+            
+             <div *ngIf="item.advance_cut_flag == 0">
+              <div style="color: rgb(44, 20, 100); font-weight: 500;">No Advanced cutting </div>
+             </div> 
+
+             <div *ngIf="item.advance_cut_flag == 1">              
+              <div *ngIf="item.advance_cut_location == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Main Building </div>
+              <div *ngIf="item.advance_cut_location == 2" style="color: rgb(44, 20, 100); font-weight: 500;"> Annex Building</div>  
+            </div>
+
+             
+           </td>
+
+
+          
+
+
+            <td *ngIf="item.status_flag == 1">  <a href="javascript:void(0)" (click)="splitItem(item,k)">
+            
+              <mat-icon>remove_red_eye</mat-icon>
+            
+            </a>
+              </td>
+
+               <td> 
+               </td>
+
+
+
+
+
+
+
+
+            </tr>
+            </tbody>
+      </table>
+      </form>
+
+    </section>
+  </section>
+
+
+
+
+

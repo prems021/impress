@@ -1,0 +1,198 @@
+
+
+
+
+<section class="mobile _all_mobile">
+
+    <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+    <div *ngIf="load_flag == 0">
+      <app-data-loader> </app-data-loader>
+        </div>
+
+
+
+  </section>
+
+  <section class="desk _all_desk">
+
+    <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+
+
+
+  <div *ngIf="load_flag == 0">
+    <app-data-loader> </app-data-loader>
+      </div>
+
+
+
+
+    <section style="height:100%;"  id="non-printable" *ngIf="this.ia>0">
+
+      <form class="horizontal" [formGroup]="workform">
+
+      <table class="table" style="width: 100%;text-align:center;">
+
+        <thead>
+          <tr style="color: #000000;
+          background-color: #bca3ed;
+          height: 4px;
+          font-size: small;
+          text-align: center;
+          font-family: sans-serif;">
+            <th scope="col">#</th>
+            <th scope="col">Paper Name</th>
+            <th style="width: 10%;">Paper Type </th>
+            <th> Printing Location </th>
+            <th> Cutting Location </th>
+
+            <th scope="col">Qty Needed </th>
+            <th scope="col">Advance cut </th>
+            <th scope="col">Split </th>
+            
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+
+         <tbody>
+          <tr *ngFor="let item of this.res_data.data.rows; let k=index " style="height:3px;">
+            <td> {{k+1}} </td>
+
+            <td style="font-size: medium;color: blue;min-width: 120px;"> {{item.Paper_master.Papertype }} {{item.Paper_master.Gsm }} {{item.Paper_master.Size }}  </td>
+
+            <td style="width:12%">
+              <mat-form-field style="width: 90%">
+                <mat-label>Paper Category </mat-label>
+                <mat-select formControlName="Paper_category">
+                  <mat-option value=1> Roll </mat-option>
+                  <mat-option value=2> Sheet </mat-option>
+                </mat-select><mat-error>Please select a type</mat-error>
+              </mat-form-field> <br>
+             <div *ngIf="item.status_flag == 1">
+              <div *ngIf="item.paper_category_id == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Roll</div>
+              <div *ngIf="item.paper_category_id == 2" style="color: rgb(44, 20, 100); font-weight: 500;">Sheet</div>  </div>
+            </td>
+            <td style="width:12%">
+            <mat-form-field style="width: 90%">
+              <mat-label>Printing Location </mat-label>
+              <mat-select formControlName="Print_location">
+                <mat-option value=1> Main Building </mat-option>
+                <mat-option value=2> Annux Building </mat-option>
+              </mat-select><mat-error>Please select a Location</mat-error>
+            </mat-form-field> <br>
+            <div *ngIf="item.status_flag == 1">
+              <div *ngIf="item.print_building == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Main Building </div>
+              <div *ngIf="item.print_building == 2" style="color: rgb(44, 20, 100); font-weight: 500;"> Annex Building</div>  </div>
+
+          </td>
+
+
+          <td style="width:12%">
+            <mat-form-field style="width: 90%">
+              <mat-label>Cutting Location </mat-label>
+              <mat-select formControlName="Cut_location">
+                <mat-option value=1> Main Building </mat-option>
+                <mat-option value=2> Annux Building </mat-option>
+              </mat-select><mat-error>Please select a Location</mat-error>
+            </mat-form-field> <br>
+            <div *ngIf="item.status_flag == 1">
+              <div *ngIf="item.cut_building == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Main Building </div>
+              <div *ngIf="item.cut_building == 2" style="color: rgb(44, 20, 100); font-weight: 500;"> Annex Building</div>  </div>
+          </td>
+
+          <td style="width:8%">
+          <mat-form-field class="example-full-width" style="width: 60%">
+            <mat-label>No of Paper</mat-label>
+            <input matInput placeholder="Qty_needed" formControlName="Qty_needed" type="number" autocomplete="off" numbersOnly>
+          <mat-error>Please Enter paper Quantity</mat-error>
+          </mat-form-field>
+          <br>
+
+          <div *ngIf="item.status_flag == 1" style="color: rgb(44, 20, 100); font-weight: 500;">
+
+            {{item.quantity}}
+          </div>
+          <!-- <div *ngIf="skill.controls.Status_flag.value == 1" style="color: rgb(44, 20, 100); font-weight: 500;">
+
+            {{ skill.controls.Qty_alloted.value  }}
+
+          </div> -->
+          </td>
+
+          <td style="width:8%">
+              
+            <mat-form-field style="width: 90%">
+              <mat-label>adv Cutting Location </mat-label>
+              <mat-select formControlName="adv_Cut_location">
+                <mat-option value=0> No Advance Cutting </mat-option>
+                <mat-option value=1> Main Building </mat-option>
+                <mat-option value=2> Annux Building </mat-option>
+              </mat-select><mat-error>Please select any option </mat-error>
+            </mat-form-field> <br>
+            
+             <div *ngIf="item.advance_cut_flag == 0">
+              <div style="color: rgb(44, 20, 100); font-weight: 500;">No Advanced cutting </div>
+             </div> 
+
+             <div *ngIf="item.advance_cut_flag == 1">              
+              <div *ngIf="item.advance_cut_location == 1" style="color: rgb(44, 20, 100); font-weight: 500;">Main Building </div>
+              <div *ngIf="item.advance_cut_location == 2" style="color: rgb(44, 20, 100); font-weight: 500;"> Annex Building</div>  
+            </div>
+
+             
+           </td>
+
+
+          
+
+
+            <td *ngIf="item.status_flag == 1">  <a href="javascript:void(0)" (click)="splitItem(item,k)">
+              <!-- <img src="../../../../assets//images/split.PNG" style="width: 15px;
+             height: 15px;" /> -->  <mat-icon> call_split</mat-icon> </a> 
+              </td>
+
+              <td>   <span *ngIf="item.status_flag == 0">  <button mat-raised-button  (click)=assign_data(this.workform.value,item.id) color="primary"> Assign </button>   </span>
+                <span *ngIf="item.status_flag == 1">  <button mat-raised-button  (click)=assign_data(this.workform.value,item.id) color="warn"> Update </button>   </span>
+               </td>
+
+
+
+
+              <!-- <table>
+                <thead><tr>   <th>
+                  work_order_details_id
+                </th> </tr> </thead>
+
+                <tbody>
+                  <tr  *ngFor="let itemz of this.res_data.data.rows[k].Work_order_paper_subs; let k2 = index ">
+                    <td>
+                      {{itemz.work_order_details_id}}
+                    </td>
+
+                  </tr>
+                </tbody>
+
+
+
+              </table> -->
+
+
+
+
+            </tr>
+            </tbody>
+      </table>
+      </form>
+
+    </section>
+
+
+
+
+
+
+
+
+  </section>

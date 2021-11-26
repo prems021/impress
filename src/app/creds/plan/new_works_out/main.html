@@ -1,0 +1,104 @@
+
+
+
+
+
+  <div *ngIf="load_flag == 0">
+    <app-data-loader> </app-data-loader>
+      </div>
+
+
+
+
+<small class="mb-2">You can use comma separator, to filter by more than one values.</small>
+<div class="columns">
+<div class="column col-12">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="col-3 col-sm-12 col-ml-auto">
+        <input
+          class="form-input"
+          type="text"
+          id="globalSearch"
+          (input)="onChange($event)"
+          placeholder="Search"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="column col-12">
+  <ngx-table [configuration]="configuration" [data]="data_new_work" #table [columns]="columns_new_work" >
+
+    <ng-template let-row>
+      <td>
+        <div class="font-small">  {{ row.workNo }}</div>
+      </td>
+      <td>
+        <span class="font-small">{{ row.workName }}</span>
+      </td>
+
+      <td>
+        <span class="font-small">{{ row.orderDate }}</span>
+      </td>
+
+
+
+
+
+
+      <td>
+        <button   class="btn btn-primary btn-sm" (click)="showModal(row)">
+          View
+        </button>
+      </td>
+
+      <!-- <td>
+        <button   class="btn btn-primary btn-sm" (click)="showModal_action(row)">
+          Action
+        </button>
+      </td> -->
+
+      <td>
+
+        <!-- <button   class="btn btn-primary btn-sm" (click)="Forward(row)">
+          Forward
+        </button> -->
+
+
+        <button  *ngIf="push_forw ==1" class="btn btn-primary btn-sm pull-right"
+        (click)="Forward(row)" type="button"><span class="glyphicon glyphicon-ok"></span> Forward </button>
+
+        <button  *ngIf="push_forw == 2" class="buttonload btn btn-sm pull-right">
+          <i class="fa fa-spinner fa-spin"></i>updating...
+        </button>
+
+        <button [disabled]="true" *ngIf="push_forw == 3" class="btn btn-warning btn-sm pull-right"
+         type="button"><span class="glyphicon glyphicon-ok"></span> Forwarded </button>
+
+
+      </td>
+
+
+
+
+    </ng-template>
+
+
+  </ngx-table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
