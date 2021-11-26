@@ -1,0 +1,49 @@
+
+
+
+<div *ngIf="load_flag == 0">
+    <app-data-loader> </app-data-loader>
+      </div>
+
+      <div *ngIf="load_flag != 0">
+
+
+
+
+        <table  class="table table-striped">
+            <thead class="thead-default"><tr>
+                <th>   Si  </th>
+              <th>   printplace  </th>
+              <th> Machine  </th>
+
+              <th> Plate Size  </th>
+              <th> Plate No  </th>
+              <th> Remarks </th>
+              <th> Action </th>
+
+
+
+          </tr> </thead>
+
+            <tbody>
+              <tr  *ngFor="let itemz of this.sub_list; let k3 = index">
+                <td>   {{k3+1}}   <!-- {{itemz.id}} --> </td>
+               <td> {{ itemz.printplace }}</td>
+                <td> {{ itemz.machine }}</td>
+                <td> {{ itemz.plate_size }}</td>
+                <td> {{ itemz.plates }}</td>
+                <td> {{ itemz.remarks }}</td>
+                <td>  
+
+                  <button  class="float-left" mat-icon-button  style="background-color: #abcaff;" aria-label="Add">
+                    <mat-icon>playlist_add_check</mat-icon> </button> </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+
+
+
+
+          </div>

@@ -1,0 +1,134 @@
+
+
+
+
+
+
+
+<div *ngIf="load_flag == 0">
+  <app-data-loader> </app-data-loader>
+    </div>
+
+
+
+
+
+
+    <div *ngIf="load_flag != 0">
+      <h4 class="mb-4 text-muted">Dashboard </h4>
+
+
+
+      <div class="row">
+
+
+
+
+
+
+
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card border-0 rounded-0">
+            <div class="card-body">
+              <div class="card-innerBody d-flex align-items-center">
+                <div class="card-icon text-light">
+                  <img _ngcontent-emq-c53="" src="../../../assets/images/vendor.png" style="width: 58px; height: 50px;">
+                </div>
+                <div class="ml-auto">
+                  <p class="card-label text-right text-muted">Active Jobs</p>
+                  <h2 class="card-text text-right ">{{this.fresh_work_count}}</h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex ">
+
+
+
+              <small class="text-danger ml-auto">
+                <button (click)="view_job()"
+                  style="background: none;border: none;color:rgb(31, 16, 83)">
+                   View  <i class="fa fa-caret-down"  style="color: #ba892e;" aria-hidden="true"></i>
+                </button>
+              </small>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6 col-lg-3 mb-4">
+          <div class="card border-0 rounded-0">
+            <div class="card-body">
+              <div class="card-innerBody d-flex align-items-center">
+                <div class="card-icon text-light">
+                  <img _ngcontent-emq-c53="" src="../../../assets/images/product.png" style="width: 58px; height: 50px;">
+                  <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
+                </div>
+                <div class="ml-auto">
+                  <p class="card-label text-right text-muted">Finished Jobs</p>
+                  <h2 class="card-text text-right ">{{this.finished_work_count}}</h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex ">
+              <small class="text-muted">
+
+              </small>
+              &nbsp; &nbsp;
+
+              <small class="text-muted">
+
+              </small>
+
+
+              <small class="text-danger ml-auto">
+                <button (click)="completed_view()"
+                  style="background: none;border: none;color:rgb(31, 16, 83)">
+                   View  <i class="fa fa-caret-down"  style="color: #ba892e;" aria-hidden="true"></i>
+                </button>
+              </small>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <span style='color:  #000000;'><span style='font-family: Anton, Verdana, Cambria;
+          font-size: 20px;
+          background-color: #060644;
+          padding-top: 33px;
+          padding-bottom: 0px;'>
+         <span style='font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;
+          font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;
+           text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;
+            text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;'>
+            <marquee behavior='scroll' direction='left'>
+          <h2 style="color:#a7fda9"> Updates  >>  ..... </h2>
+
+
+            </marquee>
+            </span>
+            </span>
+            </span>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
