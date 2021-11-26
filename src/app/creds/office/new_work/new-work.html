@@ -1,0 +1,1055 @@
+<div id="non-printable" class="content" style="background-color: none">
+    <form class="horizontal" [formGroup]="workform1" autocomplete="off">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="col-md-4">
+            <span style="font-size: x-large; color: steelblue" class="head-label"
+              >Work Sheet
+            </span>
+          </div>
+          <div class="col-md-8"></div>
+        </div>
+  
+        <div class="col-md-6">
+  
+          <mat-form-field style="float: right;color: red; font-weight: 500; width: 30%">
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              [min]="tomorrow"
+              formControlName="estimateDate"
+              placeholder="Estimate Delivery Date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker
+            ><mat-error>Select a date</mat-error>
+          </mat-form-field>
+  
+  
+          <mat-form-field
+            style="color: green; font-weight: 500; width: 30%"
+          >
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              [max]="yesterday"
+              formControlName="orderDate"
+              placeholder="Order Date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker
+            ><mat-error>Select a date</mat-error>
+          </mat-form-field>
+  
+  
+  
+  
+  
+        </div>
+      </div>
+    </form>
+    <hr />
+  
+    <div class="row">
+      <div class="col-md-12">
+        <form class="horizontal" [formGroup]="workform2" autocomplete="off">
+          <div class="col-md-12">
+            <label>Customer Details</label> <br/>
+  
+  
+            <div class="row">
+            <div class="col-md-5">
+              <div class="row">
+              <div class="col-md-9">
+                <mat-form-field class="example-form-field" style="width: 100%">
+                  <mat-label>Customer Search</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    ngui-auto-complete
+                    max-num-list = 10
+                    [source]="customer_source"
+                    (valueChanged)="my_search_Callback($event)"
+                    list-formatter="customerName  -- address -- mob1"
+                    display-property-name="customerName"
+                  />
+                </mat-form-field>
+              </div>
+  
+              <div class="col-md-3" style="padding: 2%">
+             
+
+                  <a href="javascript:void(0)" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon> </a>  
+
+                
+              </div> </div>
+            </div>
+            
+  
+  
+  
+            <div class="col-md-4">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Email"
+                  type="email"
+                  formControlName="email"
+              /></mat-form-field>
+            </div>
+
+          
+  
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Mobile Number"
+                  type="text"
+                  formControlName="mob1"
+                  numbersOnly
+                  required
+                />
+                <mat-error>Number is required</mat-error></mat-form-field
+              >
+            </div>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <div class="col-md-12" style="background-color: unset;">
+      <mat-horizontal-stepper [linear]="isLinear" #stepper style="background-color: unset;">
+        <mat-step [stepControl]="workform3">
+          <form [formGroup]="workform3">
+            <ng-template matStepLabel>Fill out Work Details</ng-template>
+  
+            <div class="col-md-12">
+              <label>Work Details</label><br />
+
+              <div class="row">
+
+
+              <div class="col-md-5">
+                <mat-form-field class="example-full-width" style="width: 100%">
+                  <input
+                    matInput
+                    placeholder="Name of work"
+                    type="text"
+                    formControlName="workName"
+                  />
+                  <mat-error>Please enter work name</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3">
+                <mat-form-field style="width: 100% !important">
+                  <mat-label>Size</mat-label>
+                  <mat-select formControlName="workSize_select">
+                    <mat-option value="">Select type</mat-option>
+                    <mat-option value="Single Dy (570*435) mm">Single Dy (570*435) mm</mat-option>
+                    <mat-option value="Dy half (280*435) mm">Dy half (280*435) mm</mat-option>
+                    <mat-option value="Dy 1/4 (215*280) mm">Dy 1/4 (215*280) mm</mat-option>
+                    <mat-option value="Dy 1/8 (140*215) mm">Dy 1/8 (140*215) mm</mat-option>
+                    <mat-option value="Dy 1/16 (105*140) mm">Dy 1/16 (105*140) mm</mat-option>
+
+                    <mat-option value="Double Crown (720*495) mm">Double Crown (720*495) mm</mat-option>
+                    <mat-option value="Single Crown (360*495) mm">Single Crown (360*495) mm</mat-option>
+                    <mat-option value="Crown Half (245*360) mm">Crown Half (245*360) mm</mat-option>
+                    <mat-option value="Crown 1/4 (180*245) mm">Crown 1/4 (180*245) mm</mat-option>
+                    <mat-option value="Crown 1/8 (120*180) mm">Crown 1/8 (120*180) mm</mat-option>
+                    <mat-option value="Crown 1/16 (90*120) mm">Crown 1/16 (90*120) mm</mat-option>
+
+                     </mat-select><mat-error>Please select a type</mat-error>
+                </mat-form-field>
+              </div>
+
+
+
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width" style="width: 100%">
+                  <input
+                    matInput
+                    placeholder="Other Size"
+                    type="text"
+                    formControlName="workSize"
+                  />
+                  <mat-error>Please enter a size</mat-error>
+                </mat-form-field>
+              </div>
+  
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width" style="width: 100%">
+                  <input
+                    matInput  min="1"
+                    placeholder="Copies"
+                    type="number"
+                    formControlName="copies"
+                    autocomplete="off"
+                    numbersOnly
+                  />
+                  <mat-error>Please enter number of copies</mat-error>
+                </mat-form-field>
+              </div>
+              </div>
+  
+              <div class="row">  
+              <div class="col-md-4">
+                <mat-form-field style="width: 100% !important">
+                  <mat-label>Print Type</mat-label>
+                  <mat-select formControlName="typePrinting">
+                    <mat-option value="">Select type</mat-option>
+                    <mat-option value="Color">M Color</mat-option>
+                    <mat-option value="B/W">Black & White</mat-option>
+                    <mat-option value="Color B/W">M Color & B/W</mat-option> 
+                    <mat-option value="S color">S color</mat-option>
+                    <mat-option value="2 Color">2 Color</mat-option> 
+                    
+                    </mat-select
+                  ><mat-error>Please select a type</mat-error>
+                </mat-form-field>
+              </div>
+  
+              <div class="col-md-4">
+                <mat-form-field style="width: 100% !important">
+                  <mat-label>Choose Engineer</mat-label>
+                  <mat-select formControlName="engineer" #focusRef>
+                    <input
+                      class="myInput"
+                      #myInput
+                      matInput
+                      type="text"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder="search"
+                    />
+                    <mat-option value="">Select Engineer</mat-option>
+                    <mat-option
+                      (onSelectionChange)="changee($event)"
+                      *ngFor="let eng of engineer_list"
+                      [value]="eng.engineerName"
+                      >{{ eng.engineerName }}</mat-option
+                    > </mat-select
+                  ><mat-error>Please select an engineer</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+  
+              <div class="col-md-12">
+                <div class="row">  
+
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 100% !important; text-align: center"
+                  >
+                    <input
+                      matInput  matInput min="0"
+                      placeholder="M Color"
+                      type="number"
+                      formControlName="mColor"
+                      class="workinput"
+                      autocomplete="off"
+                      numbersOnly
+                  /></mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 100% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder="2 Color"
+                      type="number" min="0"
+                      formControlName="twoColor"
+                      class="workinput"
+                      autocomplete="off"
+                      numbersOnly
+                  /></mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 100% !important; text-align: center"
+                  >
+                    <input
+                      matInput min="0"
+                      placeholder="S Color"
+                      type="number"
+                      formControlName="sColor"
+                      class="workinput"
+                      autocomplete="off"
+                      numbersOnly
+                  /></mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 100% !important; text-align: center"
+                  >
+                    <input
+                      matInput min="0"
+                      placeholder="B & W"
+                      type="number"
+                      formControlName="bandWhite"
+                      class="workinput"
+                      autocomplete="off"
+                      numbersOnly
+                  /></mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 100% !important; text-align: center"
+                  >
+                    <input
+                      matInput min="0"
+                      placeholder="Cover"
+                      type="number"
+                      formControlName="cover"
+                      class="workinput"
+                      autocomplete="off"
+                      numbersOnly
+                  /></mat-form-field>
+                </div>
+                <div class="col-md-1"></div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button
+                [disabled]="!workform3.valid || !workform2.valid"
+                style="float: right"
+                mat-button
+                matStepperNext
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-step>
+  
+        <mat-step [stepControl]="workform4" label="Binding & Lamination">
+          <form [formGroup]="workform4">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="col-md-12" style="text-align: center; padding: 1%">
+                  <button
+                    class="tog"
+                    mat-raised-button
+                    (click)="toggleBind();"
+                    [style.backgroundColor]="btnColor"
+                  >
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Other
+                  </button>
+                </div>
+  
+                <div *ngIf="showBind">
+                  <div class="col-md-12" style="text-align: center">
+                    <mat-form-field
+                      class="example-full-width"
+                      style="width: 80% !important; text-align: center"
+                    >
+                      <input
+                        matInput
+                        placeholder="Other Binding"
+                        type="text"
+                        formControlName="other_binding"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div *ngIf="!(showBind)" class="row">
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="folding"
+                        >Folding
+                      </mat-checkbox>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="stitching"
+                        >Stitching
+                      </mat-checkbox>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="perfect"
+                        >Perfect
+                      </mat-checkbox>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="centerPin"
+                        >Center Pin
+                      </mat-checkbox>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="padmaking"
+                        >Padmaking</mat-checkbox
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="shringwrap"
+                        >Shringwrap</mat-checkbox
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="creasing"
+                        >Creasing</mat-checkbox
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="numbering"
+                        >Numbering</mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="spiral_binding"
+                        >Spiral Binding</mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="case_binding"
+                        >Case Binding</mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="hard_binding"
+                        >Hard Binding</mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="tin_mounting"
+                        >Tin Mounting</mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="shring_wrap_bundle_each"
+                        >Shrink wrap(Bundle Each) </mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="hole_punch"
+                        > Hole Punch </mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="flush_cutting"
+                        > Flush Cutting </mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="radiobtn" style="width: 100%">
+                      <mat-checkbox
+                        class="example-margin"
+                        formControlName="none_binding"
+                        > None </mat-checkbox
+                      >
+                    </div>
+                  </div>
+
+
+                  
+
+      
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <div class="col-md-12" style="text-align: center; padding: 2%">
+                  <button
+                    class="tog"
+                    mat-raised-button
+                    (click)="toggleBind_matt();"
+                    [style.backgroundColor]="btnColor_matt"
+                  >
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Other
+                  </button>
+                </div>
+  
+                <div *ngIf="showBind_matt">
+                  <div class="col-md-12" style="text-align: center">
+                    <mat-form-field
+                      class="example-full-width"
+                      style="width: 80% !important; text-align: center"
+                    >
+                      <input
+                        matInput
+                        placeholder="Other Lamination"
+                        type="text"
+                        formControlName="other_lamination"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <br />
+  
+                <div class="col-md-12" style="text-align: center; padding: 2%" *ngIf="!showBind_matt">
+                  <br />
+                 
+                    <mat-radio-group
+                      formControlName="matt"
+                      aria-labelledby="example-radio-group-label"
+                      class="example-radio-group"
+                    >
+                      <mat-radio-button
+                        class="example-radio-button"
+                        *ngFor="let mat of matts"
+                        [value]="mat"
+                      >
+                        {{mat}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                 
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+  
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button
+              [disabled]="!workform4.valid"
+              style="float: right"
+              mat-button
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </mat-step>
+  
+  
+  
+  
+  
+  
+  
+        <mat-step [stepControl]="workform5" label="Paper Details">
+          <form [formGroup]="workform5">
+  
+  
+            <div class="col-md-12">
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                    <div class="col-md-12">
+                           <div  class="form-group col-md-1 col-sm-1 col-lg-1 col-xs-6">
+                        <button  matTooltip="Add Paper"  class="float-left" mat-icon-button color="primary" aria-label="Add"
+                         (click)="setlangfun()"> <mat-icon>add_circle_outline</mat-icon> In Stock Papers </button>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+  
+                    <div  class="col-md-12" *ngIf="show_paper_option">
+                      <mat-dialog-content formArrayName="paper">
+                        <div class="row" *ngFor="let item of paperarray.controls; let i=index;trackBy: cmpare;" [formGroupName]="i" >
+                          
+                          <div class="col-md-11">
+                            <mat-form-field style="width: 100%">
+                              <mat-label>Choose Paper</mat-label>
+                              <mat-select formControlName="paper">
+                                <input
+                                  class="myInput"
+                                  #myInput
+                                  matInput
+                                  type="text"
+                                  autofocus="true"
+                                  autocomplete="off"
+                                  placeholder="search"
+                                />
+                                <mat-option *ngFor="let item of fetchpaper" [value]="item.id">
+                                  {{item.Papertype + '-' + item.Size + '-' + item.Gsm}}
+                                </mat-option>
+                              </mat-select>
+  
+  
+  
+  
+                            </mat-form-field> </div>
+  
+                            <div  class="form-group col-md-1 col-sm-1 col-lg-1 col-xs-6">
+  
+                              <button  matTooltip="Info about the action"  class="float-left" mat-icon-button color="primary" aria-label="Add"
+                               (click)="removelangfun(i)"> <mat-icon>close</mat-icon> </button>
+                            </div>
+                         
+  
+  
+  
+                        </div>
+                      </mat-dialog-content>
+  
+  
+                       <span *ngIf="pape_r.errors" style="color: red;">
+                        Paper Already on the list
+                       </span>
+  
+  
+                </div>
+              </div>
+            </div>
+             
+  
+            <div class="col-md-6">
+                <div class="row"> 
+  
+              <div class="col-md-12">
+                <div  class="form-group col-md-1 col-sm-1 col-lg-1 col-xs-6">
+                  <button  matTooltip="Info about the action"  class="float-left" mat-icon-button color="primary" aria-label="Add"
+                   (click)="add_other_paper_fun()"> <mat-icon>add_circle_outline</mat-icon> Other Papers  </button>
+                </div>
+              </div>
+              <br>
+              <br>
+
+              <div class="col-md-12">  
+                <div style="text-align: center">
+                  <mat-dialog-content formArrayName="other_paper_ary">
+                  <div class="row" *ngFor="let item of other_paperarray.controls; let b=index;" [formGroupName]="b" >
+                   
+                    <div  class="form-group col-md-10 col-sm-10 col-lg-10 col-xs-6">
+                  <mat-form-field
+                  class="example-full-width"
+                  style="width: 80% !important; text-align: center">
+                  <input
+                    matInput
+                    placeholder="Other Paper"
+                    type="text"
+                    formControlName="oth_paper"
+                  />
+                </mat-form-field> </div>
+  
+                <div  class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-6">
+                  <button  matTooltip="Info about the action"  class="float-left" mat-icon-button color="primary" aria-label="Add"
+                   (click)="remove_other_paper_fun(b)"> <mat-icon>close</mat-icon> </button>
+                </div>
+              </div>  
+                 </mat-dialog-content>
+              </div>
+            </div>
+
+            </div> 
+  
+  
+  
+              </div>
+  
+            </div>
+  
+  
+            </div>
+  
+            <br>
+  
+  
+            <button style="float: left;" mat-button matStepperPrevious>Back</button>
+            <button style="float: right;" mat-button matStepperNext>Next</button>
+  
+  
+  
+  
+  
+          </form>
+        </mat-step>
+  
+  
+  
+  
+  
+  
+        <mat-step [stepControl]="workform6" label="Billing Details">
+          <form [formGroup]="workform6">
+            <div class="col-md-12">
+              <label>Billing</label><br />
+              <div class="row">  
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <mat-radio-group
+                  (change)="change_tax($event)"
+                  aria-label="Select an option"
+                  formControlName="tax"
+                >
+                  <mat-radio-button color="primary" value="in"
+                    >Tax Included</mat-radio-button
+                  >&nbsp;
+                  <mat-radio-button color="primary" value="ex"
+                    >Tax Excluded</mat-radio-button
+                  >
+                </mat-radio-group>
+                <hr />
+              </div>
+              <div class="col-md-4"></div> </div>
+            </div>
+  
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-3">
+                  <mat-form-field style="width: 90%">
+                    <mat-label>Choose GST</mat-label>
+                    <mat-select
+                    formGroupName="Gst_type"
+                      style="font-weight: 600; color: black"
+                      (selectionChange)="change_tax_gst($event)"
+                    >
+                      <input
+                        class="myInput"
+                        #myInput
+                        matInput
+                        type="text"
+                        autofocus="true"
+                        autocomplete="off"
+                        placeholder="search"
+                      />
+                      <mat-option
+                        *ngFor="let item of gstIn"
+                        [value]="item">
+                        {{item.Gst_type}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+  
+  
+  
+  
+                <div class="col-md-3">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder=" Total Amount"
+                      type="number"
+                      formControlName="totalAmount"
+                      autocomplete="off"
+                      style="font-weight: 600; color: black"
+                      (keyup)="calcuateGst_new()"
+                      numbersOnly
+                    />
+                  </mat-form-field>
+                </div>
+  
+                <div class="col-md-3">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder=" Discount Amount"
+                      value="0"
+                      type="number"
+                      formControlName="discount"
+                      style="font-weight: 600; color: black"
+                      autocomplete="off"
+                      (keyup)="calcuateGst_new()"
+                      numbersOnly
+                    />
+                  </mat-form-field>
+                </div>
+  
+                <div class="col-md-3" style="text-align: center">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder=" Travel Amount"
+                      type="number"
+                      value="0"
+                      formControlName="travel_amt"
+                      style="font-weight: 600; color: black"
+                      (keyup)="calcuateGst_new()"
+                      autocomplete="off"
+                      numbersOnly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+  
+              <div class="row">
+                <!-- <div class="col-md-3" style="text-align: center">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder="Cess"
+                      type="text"
+                      formControlName="cess"
+                      style="font-weight: 600; color: black"
+                      autocomplete="off"
+                      numbersOnly
+                    />
+                  </mat-form-field>
+                </div> -->
+  
+                <div class="col-md-3" style="text-align: center">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder=" Unit Amount"
+                      type="text"
+                      autocomplete="off"
+                      style="font-weight: 600; color: black"
+                      (keyup)="calcuateGst_new()"
+                      formControlName="unitAmount"
+                      numbersOnly
+                    />
+                  </mat-form-field>
+                </div>
+  
+                <div class="col-md-3" style="text-align: center">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder=" Tax Amount"
+                      type="text"
+                      style="font-weight: 600; color: black"
+                      formControlName="taxAmount"
+                    />
+                  </mat-form-field>
+                </div>
+  
+                <div class="col-md-3">
+                  <mat-form-field
+                    class="example-full-width"
+                    style="width: 90% !important; text-align: center"
+                  >
+                    <input
+                      matInput
+                      placeholder=" Grand Total"
+                      type="text"
+                      formControlName="grand_amt"
+                      style="font-weight: 600; color: black"
+                      autocomplete="off"
+                      numbersOnly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button style="float: right" mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+  
+        <mat-step>
+          <form [formGroup]="workform7">
+            <div class="col-md-12" style="text-align: center">
+              <mat-slide-toggle #os formControlName="outsource" (change)="onChange_outsource()"
+                >Out Source Job</mat-slide-toggle
+              >
+              <hr />
+            </div>
+  
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+  
+              <button *ngIf="!submitt_work" mat-button (click)="addWork()">Save</button>
+              <button *ngIf="submitt_work" mat-button class="buttonload">   <i class="fa fa-spinner fa-spin"></i> Saving    </button>
+  
+  
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+  
+  <div id="printable">
+  
+          <div class="invoice-box">
+              <table>
+                  <tr class="top">
+                      <td colspan="2">
+                          <table>
+                              <tr>
+                                  <td class="title">
+                                      <img id="imgs" src="../../../../assets/img/c_logo.png" class="image" alt="Company logo" style="width: 100%; max-width: 200px" />
+                                  </td>
+  
+                                  <td>
+                                      <b>Work # : {{this.workorderno}}</b><br />
+                                      Order Date: {{this.workform1.controls.orderDate.value  | date:'mediumDate'}} <br />
+                                      Delivery Date: {{this.workform1.controls.estimateDate.value  | date:'mediumDate'}}
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+  
+                  <tr class="information">
+                      <td colspan="2">
+                          <table>
+                              <tr>
+                                  <td>
+                    Work Name: {{this.workform3.controls.workName.value}}<br />
+                                      Work Size: {{this.workform3.controls.workSize.value}}<br />
+                    No of copies: {{this.workform3.controls.copies.value}}<br />
+                    Lamination: <span  *ngIf="showBind_matt">  {{this.workform4.controls.other_lamination.value}}  </span>   <span  *ngIf="!showBind_matt"> {{this.workform4.controls.matt.value}} </span>
+                                  </td>
+  
+                                  <td>
+                    Customer: {{this.workform2.controls.customerName.value}}<br />
+                                      Phone: {{this.workform2.controls.mob1.value}}<br />
+                    Address: {{this.workform2.controls.address.value}}
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+  
+                  <tr class="heading">
+                      <td>Payment Details</td>
+  
+                      <td>Price</td>
+                  </tr>
+  
+                  <tr class="item">
+                      <td>Amount</td>
+  
+                      <td>{{this.workform6.controls.totalAmount.value}}</td>
+                  </tr>
+  
+          <!-- <tr class="item">
+                      <td>Advance Amount</td>
+  
+                      <td>{{this.workform6.controls.address.value}}</td>
+                  </tr> -->
+          <tr class="item">
+                      <td>Travel amount</td>
+  
+                      <td>{{this.workform6.controls.travel_amt.value}}</td>
+                  </tr>
+          <tr class="item">
+                      <td>Discount</td>
+  
+                      <td>{{this.workform6.controls.discount.value}}</td>
+                  </tr>
+  
+                  <tr class="item">
+                      <td>GST</td>
+  
+                      <td>{{this.gst_percentage}} % </td>
+                  </tr>
+          <!-- <tr class="item last ">
+                      <td>Cess</td>
+  
+                      <td>{{this.workform6.controls.cess.value}}</td>
+                  </tr> -->
+  
+                  <tr class="total">
+                      <td>Grand Total</td>
+  
+                      <td>Total: {{this.workform6.controls.grand_amt.value}}</td>
+                  </tr>
+          <tr>
+            <td><a style="color:brown;"><u>check work status online visit : http://impress.co.in/check_status </u></a></td>
+          </tr>
+              </table><br>
+        <footer style="text-align: center;font-size: 12px;">ST.JOSEPH ORPHANAGE PRESS & BOOK STALL <br>
+          Changanacherry, Kottayam <br>
+          Ph: 0481-2440000, 0481-2441111</footer>
+          </div>
+  
+  
+  
+  </div>
+  

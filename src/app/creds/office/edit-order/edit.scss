@@ -1,0 +1,15 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  #printable { display: none; }
+
+  @media print
+  {
+        body {transform: scale(1);}
+      #non-printable { display: none; }
+      #printable { display: block; }
+      #imgs { width: 250px !important;}
+  }
+
+ 

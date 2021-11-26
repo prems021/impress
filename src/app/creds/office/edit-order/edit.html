@@ -1,0 +1,1227 @@
+
+
+
+
+<div id="non-printable"   style="width: 100%;">
+
+  <form class="horizontal" [formGroup]="updateworkform" style="padding: 1%;">
+    <div class="row">
+    <div class="col-md-12">
+       <label  style="padding: 1%; text-align: center; font-weight: 600;color: blue;border: none;font-size: large;"> work No :  {{updateworkform.controls.workNo.value}}  </label>
+
+    </div>
+
+
+
+    <div class="col-md-6">
+
+      <mat-form-field style="float: right; width: 40%;">
+        <input matInput [matDatepicker]="picker2" formControlName="estimateDate" placeholder="Estimate Date" style="font-weight: 600;">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker><mat-error>Select a date</mat-error>
+      </mat-form-field>
+
+      <mat-form-field style="float: left; width: 40%;">
+
+        <input matInput [matDatepicker]="picker1" formControlName="orderDate" placeholder="Order Date" style="font-weight: 600;">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker><mat-error>Select a date</mat-error>
+      </mat-form-field>
+
+
+    </div><br>
+
+    <div class="col-md-6">
+          <div *ngIf="!this.cus_updation" class="col-md-12">
+            <label style="font-size: 17px;text-decoration: underline;">Customer Details</label>  &nbsp;   &nbsp;
+            <!-- <button type="button" (click)="edit_customer()" class="btn btn-flat" style="background-color: white; color: #00796B;"> -->
+              <a href="javascript:void(0)" (click)="edit_customer()"><mat-icon>edit</mat-icon> </a> <br/>
+
+
+              <!-- <span title="Finish Date">
+              <i class="fa fa-edit" style="font-size: medium;"></i></span></button> <br/> -->
+            <label> Name : {{this.updateworkform.controls.customerName.value}}  </label> <br/>
+            <label>Customer Address :  {{this.updateworkform.controls.address.value}}  </label>  <br/>
+            <label> Ph :  {{this.updateworkform.controls.mob1.value}} </label>
+          </div>
+     </div>
+
+
+
+
+     <div *ngIf="this.cus_updation" class="col-md-12">
+      <label>Customer Details</label> <br/>     <a href="javascript:void(0)" (click)="edit_customer()"><mat-icon>reply</mat-icon> </a>
+ <div class="row">
+      <div class="col-md-5">
+        <div class="row">
+        <div class="col-md-10">
+          <mat-form-field class="example-form-field" style="width: 100%">
+            <mat-label>Customer Search</mat-label>
+            <input
+              matInput
+              type="text"
+              ngui-auto-complete
+              max-num-list = 5
+              [source]="customer_source"
+              (valueChanged)="my_search_Callback($event)"
+              list-formatter="customerName  -- address -- mob1"
+              display-property-name="customerName"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-2" style="padding: 2%">
+
+          <a href="javascript:void(0)" (click)="openg()"><mat-icon>add_circle_outline</mat-icon> </a>
+
+
+
+        </div>
+      </div>
+      </div>
+
+
+
+      <div class="col-md-4">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Email"
+            type="email"
+            formControlName="email"
+        /></mat-form-field>
+      </div>
+
+      <div class="col-md-3">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Mobile Number"
+            type="text"
+            formControlName="mob1"
+            numbersOnly
+            required
+          />
+          <mat-error>Number is required</mat-error></mat-form-field
+        >
+      </div>
+    </div>
+    </div>
+
+
+
+
+          <div class="col-md-12" style="padding: 1%;">
+            <label>Work Details</label> <br/>
+
+            <div class="row">
+              <div class="col-md-5">
+                <mat-form-field class="example-full-width" style="width: 100%;">
+                  <input
+                    class="workinput"
+                    matInput placeholder="Name of work"
+                    type="text"
+                    formControlName="workName"
+                    style="font-weight: 600;">
+                    <mat-error>Please enter work name</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-4">
+                <mat-form-field style="width: 100% !important">
+                  <mat-label>Work Size</mat-label>
+                  <mat-select formControlName="workSize_select">
+                    <mat-option value="">Select type</mat-option>
+
+                    <mat-option *ngFor="let work_size of Work_size_ary" [value]="work_size.work_size_select">{{work_size.work_size_select}}</mat-option>
+
+                     </mat-select><mat-error>Please select a type</mat-error>
+                </mat-form-field>
+              </div>
+
+
+
+
+
+
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width" style="width: 100% !important; padding: 1%;">
+                  <input
+                    class="workinput"
+                    matInput placeholder="Other"
+                    type="text"
+                    formControlName="workSize"
+                    style="font-weight: 600;">
+                    <mat-error>Please enter a size</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width" style="width: 100% !important; padding: 1%;">
+                  <input
+                    class="workinput"
+                    matInput placeholder="Copies"
+                    type="text"
+                    formControlName="copies" numbersOnly
+                    style="font-weight: 600;">
+                    <mat-error>Please enter number of copies</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field style="width: 100% !important; padding: 1%;">
+                  <mat-label>Print Type</mat-label>
+                  <mat-select formControlName="typePrinting" style="font-weight: 600;">
+
+
+                    <mat-option value="">Select type</mat-option>
+                    <mat-option value="Color">M Color</mat-option>
+                    <mat-option value="B/W">Black & White</mat-option>
+                    <mat-option value="Color B/W">M Color & B/W</mat-option>
+                    <mat-option value="S color">S color</mat-option>
+                    <mat-option value="2 Color">2 Color</mat-option>
+                  </mat-select><mat-error>Please select a type</mat-error>
+                </mat-form-field>
+              </div>
+
+
+               <div class="col-md-2">
+                <mat-form-field style="width: 100% !important; padding: 1%;">
+                  <mat-label>Engineer</mat-label>
+                  <mat-select formControlName="engineer" style="font-weight: 600;">
+                    <mat-option value="">Select Engineer</mat-option>
+                    <mat-option *ngFor="let eng of engineer_list" [value]="eng.engineerName">{{ eng.engineerName }}</mat-option>
+                  </mat-select><mat-error>Please select an engineer</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="M Color" type="text" formControlName="mColor" class="workinput"  numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="2 Color" type="text" formControlName="twoColor" class="workinput" numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="S Color" type="text" formControlName="sColor" class="workinput" numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="B & W" type="text" formControlName="bandWhite" class="workinput" numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 19% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="Cover" type="text" formControlName="cover" class="workinput" numbersOnly></mat-form-field>&nbsp;
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+
+
+
+            <div class="row">
+            <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"><u>Binding Type</u></h1></div><br>
+
+
+              <div class="col-md-12" style="text-align: center;">
+                <button class="tog" mat-raised-button (click)="toggleBind(); changeBind()" [style.backgroundColor]="bindColor">
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Other</button>
+              </div> <br>
+
+
+              <div class="col-md-12">
+              <div *ngIf="showBind">
+                <div class="col-md-12" style="text-align: center;">
+                  <mat-form-field class="example-full-width" style="width: 40% !important; text-align: center;">
+                    <input matInput placeholder="Other Binding" type="text" formControlName="other_binding">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <br>
+
+              <div class="col-md-12">
+
+                <div *ngIf="!(showBind)" class="row">
+
+                  <div class="col-md-2 col-6">   <div class="radiobtn">
+                    <input type="checkbox" value="Folding" formControlName="folding" id="folding"/>
+                    <label for="folding" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Folding</label>
+                  </div>
+                 </div>
+
+
+                 <div class="col-md-2 col-6">   <div class="radiobtn">
+                  <input type="checkbox" value="Stitching" formControlName="stitching" id="stitching"/>
+                  <label for="stitching" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Stitching</label>
+                </div>
+              </div>
+
+              <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Perfect" formControlName="perfect" id="perfect"/>
+                  <label for="perfect" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Perfect</label>
+                </div>
+              </div>
+
+              <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="CenterPin" formControlName="centerPin" id="centerPin"/>
+                  <label for="centerPin" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Center Pin</label>
+                </div>
+              </div>
+
+
+              <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Padmaking" formControlName="padmaking" id="padmaking"/>
+                  <label for="padmaking" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Padmaking</label>
+                  </div>
+              </div>
+
+
+              <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Shringwrap" formControlName="shringwrap" id="shringwrap"/>
+                  <label for="shringwrap" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Shringwrap</label>
+               </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                <input type="checkbox" value="Creasing" formControlName="creasing" id="creasing"/>
+                <label for="creasing" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Creasing</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Numbering" formControlName="numbering" id="numbering"/>
+                  <label for="numbering" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Numbering</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6 ">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Creasing" formControlName="spiral_binding" id="spiral_binding"/>
+                  <label for="spiral_binding" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Spiral Binding</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Numbering" formControlName="case_binding" id="case_binding"/>
+                  <label for="case_binding" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Case Binding</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Creasing" formControlName="hard_binding" id="hard_binding"/>
+                  <label for="hard_binding" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Hard Binding</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                    <input type="checkbox" value="Numbering" formControlName="tin_mounting" id="tin_mounting"/>
+                    <label for="tin_mounting" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Tin Mounting</label>
+              </div>
+               </div>
+
+               <div class="col-md-4 col-12">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Creasing" formControlName="shring_wrap_bundle_each" id="shring_wrap_bundle_each"/>
+                  <label for="shring_wrap_bundle_each" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Shrink wrap(Bundle Each)</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Numbering" formControlName="hole_punch" id="hole_punch"/>
+                  <label for="hole_punch" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Hole Punch</label>
+              </div>
+               </div>
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Creasing" formControlName="flush_cutting" id="flush_cutting"/>
+                  <label for="flush_cutting" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Flush Cutting</label>
+              </div>
+               </div>
+
+               <div class="col-md-2 col-6">
+                <div class="radiobtn">
+                  <input type="checkbox" value="Numbering" formControlName="none_binding" id="none_binding"/>
+                  <label for="none_binding" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;None</label>
+              </div>
+               </div>
+              </div>
+              </div>
+            </div><br>
+
+
+            <div class="row">
+          <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Lamination </u>  </h1></div><br>
+            <div class="col-md-12" style="text-align: center;">
+              <button class="tog" mat-raised-button (click)="toggle_lamination(); change_lamination()" [style.backgroundColor]="laminColor">
+                <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Other</button>
+            </div>
+
+
+
+              <div *ngIf="showlamin" class="col-md-12" style="text-align: center;">
+                <mat-form-field class="example-full-width" style="width: 40% !important; text-align: center;">
+                  <input matInput placeholder="Other Lamination" type="text" formControlName="other_lamination">
+                </mat-form-field>
+              </div>
+
+            </div>
+
+
+
+
+          <div class="row">
+            <div  *ngIf="!showlamin" class="col-md-12" style="text-align: center; padding: 2%" >
+              <br />
+                <mat-radio-group
+                  formControlName="matt"
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                >
+                  <mat-radio-button
+                    class="example-radio-button"
+                    *ngFor="let mat of matts"
+                    [value]="mat"
+                  >
+                    {{mat}}
+                  </mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+             <br>
+          </div><br>
+
+
+
+
+
+          <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Paper Types </u>  </h1></div><br>
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="col-md-12" style="text-align: center;">
+                <button class="tog" mat-raised-button (click)="toggle(); change()" [style.backgroundColor]="btnColor">
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Out Stock</button>
+              </div>
+                  <div *ngIf="show">
+                    <div class="col-md-8" style="text-align: center;">
+                      <mat-form-field class="example-full-width" style="width: 60% !important; text-align: center;">
+                        <input matInput placeholder="Other Paper" type="text" formControlName="other_paper">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;padding: 2%;">
+                      <button class="btn btn-flat" (click)="newpaperout()"
+                       style=" font-weight: 500; background-color: rgb(163, 168, 168); color: #fff; width: 100%; border-radius: 5px;">
+                        Add Paper</button>
+                    </div>
+                  </div>
+                  <div *ngIf="!(show)">
+                    <div formGroupName="addform" style="padding: 2%;">
+                      <div class="col-md-8">
+                        <mat-form-field style="width: 100%;">
+                          <mat-label>Choose Paper</mat-label>
+                          <mat-select formControlName="paper">
+                            <mat-option *ngFor="let item of fetchpaper" [value]="item.id">
+                              {{item.Papertype + '-' + item.Size + '-' + item.Gsm }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4" style="padding: 2%;">
+                        <button class="btn btn-flat" (click)="newpaper()"
+                         style=" font-weight: 500; background-color: blue; color: #fff; width: 100%; border-radius: 5px;">
+                          Add Paper</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" >
+              <div class="example-container mat-elevation-z8">
+                <div class="example-table-container" style="background-color: #fff;">
+                  <table mat-table [dataSource]="paperinfo"
+                   matSort matSortActive="paper" matSortDisableClear matSortDirection="desc">
+
+                    <ng-container matColumnDef="paper">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear style="color: #311B92;">Paper</th>
+
+                      <td mat-cell *matCellDef="let row" style="font-weight: 600;">
+                        {{row.Papertype}} - {{ row.Size }} - {{  row.Gsm }}  <span *ngIf="row.other_paper_flag" style="color: red;">  {{ row.other_paper_name }} </span>  </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef></th>
+                      <td mat-cell *matCellDef="let row">
+
+                        <button type="button" (click)="openDelete(row.paper_master_id)" class="btn btn-flat"
+                        style="background-color: white; color: red;"><span title="Delete Paper">
+                          <i class="fa fa-trash" style="font-size: large;"></i></span></button>
+                      </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+       <br>
+
+
+
+            <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Job Type </u>  </h1></div><br>
+
+           <div class="col-md-12">
+            <div class="row">
+            <div class="col-md-5"> </div>
+            <div class="col-md-2">
+              <mat-slide-toggle formControlName="outsource">Out Source Job</mat-slide-toggle>
+            </div>
+            <div class="col-md-5"> </div>
+            </div>
+          </div>
+            <br>
+
+
+
+
+            <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Billing </u>  </h1></div><br>
+                <div class="col-md-12">
+                  <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-4">
+                    <mat-radio-group
+                      (change)="change_tax($event)"
+                      aria-label="Select an option"
+                      formControlName="tax"
+                    >
+                      <mat-radio-button color="primary" value="in"
+                        >Tax Included</mat-radio-button
+                      >&nbsp;
+                      <mat-radio-button color="primary" value="ex"
+                        >Tax Excluded</mat-radio-button
+                      >
+                    </mat-radio-group>
+                    <hr />
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+                </div>
+
+
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-3" *ngIf="view_option_flag">
+                      <mat-form-field style="width: 90%">
+                        <mat-label>Choose GST</mat-label>
+                        <mat-select
+                        formGroupName="Gst_type"
+                          style="font-weight: 600; color: black"
+                          (selectionChange)="change_gst_on($event)"
+                        >
+                          <input
+                            class="myInput"
+                            #myInput
+                            matInput
+                            type="text"
+                            autofocus="true"
+                            autocomplete="off"
+                            placeholder="search"
+                          />
+                          <mat-option
+                            *ngFor="let item of gstIn"  [value]="item" >
+                            {{item.Gst_type}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3" *ngIf="!view_option_flag">
+                      <mat-label style="font-weight: 700;">GST : {{this.updateworkform.controls.Gst_type.get('Gst_type').value}}
+                        <span>
+                          <button type="button" (click)="delay()" class="btn btn-flat" style="color: #00796B;">
+                            <mat-icon>edit</mat-icon> </button>
+                       </span>
+                       </mat-label>
+                    </div>
+
+
+
+
+
+                    <div class="col-md-3">
+                      <mat-form-field
+                        class="example-full-width"
+                        style="width: 90% !important; text-align: center">
+                        <input
+                          matInput
+                          placeholder=" Total Amount"
+                          type="number"
+                          formControlName="totalAmount"
+                          autocomplete="off"
+                          style="font-weight: 600; color: black"
+                          (keyup)="calcuateGst_new()"
+                          numbersOnly
+                        />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                      <mat-form-field
+                        class="example-full-width"
+                        style="width: 90% !important; text-align: center"
+                      >
+                        <input
+                          matInput
+                          placeholder=" Discount Amount"
+                          value="0"
+                          type="number"
+                          formControlName="discount"
+                          style="font-weight: 600; color: black"
+                          autocomplete="off"
+                          (keyup)="calcuateGst_new()"
+                          numbersOnly
+                        />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3" style="text-align: center">
+                      <mat-form-field
+                        class="example-full-width"
+                        style="width: 90% !important; text-align: center"
+                      >
+                        <input
+                          matInput
+                          placeholder=" Travel Amount"
+                          type="number"
+                          value="0"
+                          formControlName="travel_amt"
+                          style="font-weight: 600; color: black"
+                          (keyup)="calcuateGst_new()"
+                          autocomplete="off"
+                          numbersOnly
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+
+
+                    <div class="col-md-3" style="text-align: center">
+                      <mat-form-field
+                        class="example-full-width"
+                        style="width: 90% !important; text-align: center"
+                      >
+                        <input
+                          matInput
+                          placeholder=" Unit Amount"
+                          type="text"
+                          autocomplete="off"
+                          style="font-weight: 600; color: black"
+                          (keyup)="calcuateGst_new()"
+                          formControlName="unitAmount"
+                          numbersOnly
+                        />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3" style="text-align: center">
+                      <mat-form-field
+                        class="example-full-width"
+                        style="width: 90% !important; text-align: center"
+                      >
+                        <input
+                          matInput
+                          placeholder=" Tax Amount"
+                          type="text"
+                          style="font-weight: 600; color: black"
+                          formControlName="taxAmount"
+                        />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                      <mat-form-field
+                        class="example-full-width"
+                        style="width: 90% !important; text-align: center"
+                      >
+                        <input
+                          matInput
+                          placeholder=" Grand Total"
+                          type="text"
+                          formControlName="grand_amt"
+                          style="font-weight: 600; color: black"
+                          autocomplete="off"
+                          numbersOnly
+                        />
+                      </mat-form-field>
+                    </div>
+
+
+                  </div>
+                </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12" style="padding: 2%;">
+      <button type="reset" class="btn btn-info" (click)="closeButton()" style="width: 10%; background-color: red;">Back</button>&nbsp;&nbsp;
+      <button type="submit" class="btn btn-warning" (click)="cancelwork()" style="width: 10%;">Cancel Work</button>
+      <span *ngIf="status_flag != 9">  <button type="submit" class="btn btn-info" (click)="updatework_finally()" style="width: 10%; float: right;">Update</button>  </span>
+      <span *ngIf="status_flag == 9">   <button type="submit" class="btn btn-info" (click)="updatework_forward()" style="width: 10%; float: right;">Update & Forward</button>  </span>
+    </div>
+  </div>
+
+
+
+</form>
+</div>
+
+
+
+
+
+
+<!--
+
+
+
+<div id="non-printable" class="content" style="background-color: white">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="col-md-12" style="padding: 1%;">
+            <label>Work Details</label> <br/>
+
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width" style="width: 100%;">
+                  <input
+                    class="workinput"
+                    matInput placeholder="Name of work"
+                    type="text"
+                    formControlName="workName"
+                    style="font-weight: 600;">
+                    <mat-error>Please enter work name</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width" style="width: 100% !important; padding: 1%;">
+                  <input
+                    class="workinput"
+                    matInput placeholder="Size"
+                    type="text"
+                    formControlName="workSize"
+                    style="font-weight: 600;">
+                    <mat-error>Please enter a size</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width" style="width: 100% !important; padding: 1%;">
+                  <input
+                    class="workinput"
+                    matInput placeholder="Copies"
+                    type="text"
+                    formControlName="copies" numbersOnly
+                    style="font-weight: 600;">
+                    <mat-error>Please enter number of copies</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field style="width: 100% !important; padding: 1%;">
+                  <mat-label>Print Type</mat-label>
+                  <mat-select formControlName="typePrinting" style="font-weight: 600;">
+                    <mat-option value="">Select type</mat-option>
+                    <mat-option value="Color">Color</mat-option>
+                    <mat-option value="B/W">Black & White</mat-option>
+                    <mat-option value="Color B/W">Color & B/W</mat-option>
+                  </mat-select><mat-error>Please select a type</mat-error>
+                </mat-form-field>
+              </div>
+
+
+               <div class="col-md-2">
+                <mat-form-field style="width: 100% !important; padding: 1%;">
+                  <mat-label>Engineer</mat-label>
+                  <mat-select formControlName="engineer" style="font-weight: 600;">
+                    <mat-option value="">Select Engineer</mat-option>
+                    <mat-option *ngFor="let eng of engineer_list" [value]="eng.engineerName">{{ eng.engineerName }}</mat-option>
+                  </mat-select><mat-error>Please select an engineer</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="M Color" type="text" formControlName="mColor" class="workinput"  numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="2 Color" type="text" formControlName="twoColor" class="workinput" numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="S Color" type="text" formControlName="sColor" class="workinput" numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 18% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="B & W" type="text" formControlName="bandWhite" class="workinput" numbersOnly></mat-form-field>&nbsp;
+                <mat-form-field class="example-full-width" style="width: 19% !important; text-align: center; font-weight: 600;">
+                  <input matInput placeholder="Cover" type="text" formControlName="cover" class="workinput" numbersOnly></mat-form-field>&nbsp;
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+
+
+
+
+            <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"><u>Binding Type</u></h1></div><br>
+            <div class="row">
+
+              <div class="col-md-12" style="text-align: center;">
+                <button class="tog" mat-raised-button (click)="toggleBind(); changeBind()" [style.backgroundColor]="bindColor">
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Other</button>
+              </div>
+
+              <div *ngIf="showBind">
+                <div class="col-md-12" style="text-align: center;">
+                  <mat-form-field class="example-full-width" style="width: 40% !important; text-align: center;">
+                    <input matInput placeholder="Other Binding" type="text" formControlName="other_binding">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div *ngIf="!(showBind)">
+                <div class="col-md-3" style="padding: 2%;">
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Folding" formControlName="folding" id="folding"/>
+                    <label for="folding" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Folding</label>
+                  </div>
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Stitching" formControlName="stitching" id="stitching"/>
+                    <label for="stitching" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Stitching</label>
+                  </div>
+                </div>
+                <div class="col-md-3" style="padding: 2%;">
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Perfect" formControlName="perfect" id="perfect"/>
+                    <label for="perfect" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Perfect</label>
+                  </div>
+                  <div class="radiobtn">
+                    <input type="checkbox" value="CenterPin" formControlName="centerPin" id="centerPin"/>
+                    <label for="centerPin" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Center Pin</label>
+                  </div>
+                </div>
+                <div class="col-md-3" style="padding: 2%;">
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Padmaking" formControlName="padmaking" id="padmaking"/>
+                    <label for="padmaking" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Padmaking</label>
+                  </div>
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Shringwrap" formControlName="shringwrap" id="shringwrap"/>
+                    <label for="shringwrap" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Shringwrap</label>
+                  </div>
+                </div>
+                <div class="col-md-3" style="padding: 2%;">
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Creasing" formControlName="creasing" id="creasing"/>
+                    <label for="creasing" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Creasing</label>
+                  </div>
+                  <div class="radiobtn">
+                    <input type="checkbox" value="Numbering" formControlName="numbering" id="numbering"/>
+                    <label for="numbering" style="font-size: 13px; text-align: center;">&nbsp;&nbsp;Numbering</label>
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+
+
+
+
+          <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Lamination </u>  </h1></div><br>
+          <div class="row">
+
+            <div class="col-md-12" style="text-align: center;">
+              <button class="tog" mat-raised-button (click)="toggle_lamination(); change_lamination()" [style.backgroundColor]="laminColor">
+                <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Other</button>
+            </div>
+
+
+            <div *ngIf="showlamin">
+              <div class="col-md-12" style="text-align: center;">
+                <mat-form-field class="example-full-width" style="width: 40% !important; text-align: center;">
+                  <input matInput placeholder="Other Lamination" type="text" formControlName="other_lamination">
+                </mat-form-field>
+              </div>
+            </div>
+
+
+
+          <br> <br>  <br> <br>
+
+            <div class="col-md-5"> </div>
+
+              <div *ngIf="!showlamin" class="col-md-6">
+                <div class="center-align">
+                  <input type="radio" value="Matt" formControlName="matt" id="matt">
+                  <label for="matt" class="label1">&nbsp;&nbsp;Matt</label>&nbsp;&nbsp;
+                  <input type="radio" value="Glossy" formControlName="matt" id="glossy">
+                  <label for="glossy" class="label1">&nbsp;&nbsp;Glossy</label>&nbsp;&nbsp;
+                  <input type="radio" value="Knurling" formControlName="matt" id="knurling">
+                  <label for="knurling" class="label1">&nbsp;&nbsp;Knurling</label>&nbsp;&nbsp;
+                </div>
+              </div>
+
+              <div class="col-md-1"> </div> <br>
+
+
+          </div><br>
+
+
+
+
+          <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Paper Types </u>  </h1></div><br>
+
+
+
+
+
+
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div class="col-md-12" style="text-align: center;">
+                  <button class="tog" mat-raised-button (click)="toggle(); change()" [style.backgroundColor]="btnColor">
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>&nbsp;Out Stock</button>
+                </div>
+                    <div *ngIf="show">
+                      <div class="col-md-8" style="text-align: center;">
+                        <mat-form-field class="example-full-width" style="width: 60% !important; text-align: center;">
+                          <input matInput placeholder="Other Paper" type="text" formControlName="other_paper">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4" style="text-align: center;padding: 2%;">
+                        <button class="btn btn-flat" (click)="newpaperout()"
+                         style=" font-weight: 500; background-color: rgb(163, 168, 168); color: #fff; width: 100%; border-radius: 5px;">
+                          Add Paper</button>
+                      </div>
+                    </div>
+                    <div *ngIf="!(show)">
+                      <div formGroupName="addform" style="padding: 2%;">
+                        <div class="col-md-8">
+                          <mat-form-field style="width: 100%;">
+                            <mat-label>Choose Paper</mat-label>
+                            <mat-select formControlName="paper">
+                              <mat-option *ngFor="let item of fetchpaper" [value]="item.id">
+                                {{item.Papertype + '-' + item.Size + '-' + item.Gsm }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4" style="padding: 2%;">
+                          <button class="btn btn-flat" (click)="newpaper()"
+                           style=" font-weight: 500; background-color: blue; color: #fff; width: 100%; border-radius: 5px;">
+                            Add Paper</button>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8" >
+                <div class="example-container mat-elevation-z8">
+                  <div class="example-table-container" style="background-color: #fff;">
+                    <table mat-table [dataSource]="paperinfo"
+                     matSort matSortActive="paper" matSortDisableClear matSortDirection="desc">
+
+                      <ng-container matColumnDef="paper">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear style="color: #311B92;">Paper</th>
+                        <!-- <td mat-cell *matCellDef="let row" style="font-weight: 600;">{{row.Papertype + ' ' + row.Size + ' ' + row.Gsm + '' + row.other_paper }}</td> --
+                        <td mat-cell *matCellDef="let row" style="font-weight: 600;">
+                          {{row.Papertype}} - {{ row.Size }} - {{  row.Gsm }}  <span *ngIf="row.other_paper_flag" style="color: red;">  {{ row.other_paper_name }} </span>  </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let row">
+
+                          <button type="button" (click)="openDelete(row.paper_master_id)" class="btn btn-flat"
+                          style="background-color: white; color: red;"><span title="Delete Paper">
+                            <i class="fa fa-trash" style="font-size: large;"></i></span></button>
+                        </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div><br>
+
+
+
+          <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Job Type </u>  </h1></div><br>
+
+             <div class="col-md-12">
+              <div class="col-md-5"> </div>
+              <div class="col-md-2">
+                <mat-slide-toggle formControlName="outsource">Out Source Job</mat-slide-toggle>
+              </div>
+              <div class="col-md-5"> </div>
+              </div>
+
+              <br>
+
+
+
+
+              <div class="col-md-12" style="text-align: center;"><h1 class="spanhead" style="font-size: 20px;"> <u> Billing </u>  </h1></div><br>
+                  <div class="col-md-12">
+
+                    <div class="col-md-5"></div>
+                    <div class="col-md-4">
+                      <mat-radio-group
+                        (change)="change_tax($event)"
+                        aria-label="Select an option"
+                        formControlName="tax"
+                      >
+                        <mat-radio-button color="primary" value="in"
+                          >Tax Included</mat-radio-button
+                        >&nbsp;
+                        <mat-radio-button color="primary" value="ex"
+                          >Tax Excluded</mat-radio-button
+                        >
+                      </mat-radio-group>
+                      <hr />
+                    </div>
+                    <div class="col-md-3"></div>
+                  </div>
+
+                  <div class="col-md-12">
+
+
+
+                    <div class="row">
+                      <div class="col-md-3" *ngIf="view_option_flag">
+                        <mat-form-field style="width: 90%">
+                          <mat-label>Choose GST</mat-label>
+                          <mat-select
+                          formGroupName="Gst_type"
+                            style="font-weight: 600; color: black"
+                            (selectionChange)="change_gst_on($event)"
+                          >
+                            <input
+                              class="myInput"
+                              #myInput
+                              matInput
+                              type="text"
+                              autofocus="true"
+                              autocomplete="off"
+                              placeholder="search"
+                            />
+                            <mat-option
+                              *ngFor="let item of gstIn"  [value]="item" >
+                              {{item.Gst_type}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3" *ngIf="!view_option_flag">
+                        <mat-label style="font-weight: 700;">GST : {{this.updateworkform.controls.Gst_type.get('Gst_type').value}}
+                          <span>
+
+
+                            <button type="button" (click)="delay()" class="btn btn-flat" style="background-color: white; color: #00796B;">
+                              <mat-icon>edit</mat-icon> </button>
+
+
+                         </span>
+                         </mat-label>
+                      </div>
+
+
+
+
+
+                      <div class="col-md-3">
+                        <mat-form-field
+                          class="example-full-width"
+                          style="width: 90% !important; text-align: center">
+                          <input
+                            matInput
+                            placeholder=" Total Amount"
+                            type="number"
+                            formControlName="totalAmount"
+                            autocomplete="off"
+                            style="font-weight: 600; color: black"
+                            (keyup)="calcuateGst_new()"
+                            numbersOnly
+                          />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field
+                          class="example-full-width"
+                          style="width: 90% !important; text-align: center"
+                        >
+                          <input
+                            matInput
+                            placeholder=" Discount Amount"
+                            value="0"
+                            type="number"
+                            formControlName="discount"
+                            style="font-weight: 600; color: black"
+                            autocomplete="off"
+                            (keyup)="calcuateGst_new()"
+                            numbersOnly
+                          />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3" style="text-align: center">
+                        <mat-form-field
+                          class="example-full-width"
+                          style="width: 90% !important; text-align: center"
+                        >
+                          <input
+                            matInput
+                            placeholder=" Travel Amount"
+                            type="number"
+                            value="0"
+                            formControlName="travel_amt"
+                            style="font-weight: 600; color: black"
+                            (keyup)="calcuateGst_new()"
+                            autocomplete="off"
+                            numbersOnly
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="row">
+
+
+                      <div class="col-md-3" style="text-align: center">
+                        <mat-form-field
+                          class="example-full-width"
+                          style="width: 90% !important; text-align: center"
+                        >
+                          <input
+                            matInput
+                            placeholder=" Unit Amount"
+                            type="text"
+                            autocomplete="off"
+                            style="font-weight: 600; color: black"
+                            (keyup)="calcuateGst_new()"
+                            formControlName="unitAmount"
+                            numbersOnly
+                          />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3" style="text-align: center">
+                        <mat-form-field
+                          class="example-full-width"
+                          style="width: 90% !important; text-align: center"
+                        >
+                          <input
+                            matInput
+                            placeholder=" Tax Amount"
+                            type="text"
+                            style="font-weight: 600; color: black"
+                            formControlName="taxAmount"
+                          />
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field
+                          class="example-full-width"
+                          style="width: 90% !important; text-align: center"
+                        >
+                          <input
+                            matInput
+                            placeholder=" Grand Total"
+                            type="text"
+                            formControlName="grand_amt"
+                            style="font-weight: 600; color: black"
+                            autocomplete="off"
+                            numbersOnly
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+
+                  </div>
+
+
+
+
+
+
+
+
+
+          <div class="row">
+            <div class="col-md-12" style="padding: 2%;">
+              <button type="reset" class="btn btn-info" (click)="closeButton()" style="width: 10%; background-color: red;">Back</button>&nbsp;&nbsp;
+
+              <button type="submit" class="btn btn-warning" (click)="cancelwork(bwin.value)" style="width: 10%;">Cancel Work</button>
+
+              <span *ngIf="status_flag != 9">  <button type="submit" class="btn btn-info" (click)="updatework_finally()" style="width: 10%; float: right;">Update</button>  </span>
+
+              <span *ngIf="status_flag == 9">   <button type="submit" class="btn btn-info" (click)="updatework_forward()" style="width: 10%; float: right;">Update & Forward</button>  </span>
+
+
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </mat-dialog-content>
+    </div> -->
+
+
+
+
+
+
+    <!--
+
+
+     -->

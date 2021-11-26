@@ -1,0 +1,30 @@
+
+
+  <div *ngIf="flag == 0">
+  <app-data-loader> </app-data-loader>
+    </div>
+
+
+  <div class="mainclass"  style="margin-bottom:100px;" *ngIf="flag == 1">
+    <h3 class="text-center" style="    background-color: powderblue;">Ongoing Work</h3>
+    <br />
+
+    <ngx-table
+      tableClass="table table-striped table-bordered table-hover table-responsive-sm"
+      [configuration]="configuration"
+      [data]="data_works"
+      [columns]="columns_works"
+      (event)="onEvent_customer($event)"
+    >
+    </ngx-table>
+  </div>
+
+
+
+  <div class="mainclass"  style="margin-bottom:100px;" *ngIf="flag == 3">
+
+  <app-work-detail  [workid]="this.e_var.Wid"  (viewchange)="view_change($event)"></app-work-detail>
+
+</div>
+
+

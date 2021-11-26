@@ -1,0 +1,62 @@
+
+<div class="content" style="text-align: center;">
+
+  <h1 style="font-size: large; font-weight: 500;">Customer Details</h1>
+  <form class="horizontal" [formGroup]="custform">
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Customer Name"
+        type="text"
+        formControlName="customerName"
+        required>
+    </mat-form-field>
+
+
+
+
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input  [email]="true"
+        matInput placeholder="Email"
+        type="email"
+        formControlName="email" ></mat-form-field><br>
+
+
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Address"
+        type="text"
+        formControlName="address"><mat-error>Address is required</mat-error></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Mobile Number"
+        type="number" [maxLength]="11"
+        formControlName="mob1" numbersOnly required></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        class="workinput"
+        matInput placeholder="Phone Number"
+        type="number"
+        formControlName="mob2"  [maxLength]="13" ></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        class="workinput"
+        matInput placeholder="GST Number"
+        type="text"
+        formControlName="gst_no"></mat-form-field><br>
+        <span class="hi-fi">
+
+          <button [disabled]="!custform.valid" *ngIf="push_disabled_save ==1" class="btn btn-primary pull-right" 
+          (click)="save_customer()" type="button"><span class="glyphicon glyphicon-ok"></span> Add Customer </button>
+          
+          <button  *ngIf="push_disabled_save == 2" class="buttonload btn pull-right">
+            <i class="fa fa-spinner fa-spin"></i>Saving...
+          </button>
+          
+          <button [disabled]="true" *ngIf="push_disabled_save == 3" class="btn btn-warning pull-right" 
+           type="button"><span class="glyphicon glyphicon-ok"></span> Saved </button>
+
+<!-- 
+    <button  type="button" (click)="save_customer()" autofocus mat-button> Add Customer</button><br> -->
+  </span>
+  </form>
+</div>

@@ -1,0 +1,115 @@
+<!-- <div class="content" style="text-align: center;">
+  <div class="col-md-12" style="float: right; text-align: center;">
+    <button class="closeButton" (click)="closeFunction()"><img src="assets/dist/img/close.png"></button>
+  </div>
+  <h1 style="font-size: large; font-weight: 500;">Customer Details</h1>
+  <form class="horizontal" [formGroup]="custform">
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Customer Name"
+        type="text"
+        formControlName="customerName"
+        required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Email"
+        type="email"
+        formControlName="email"
+        [pattern]="emailPattern"></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Address"
+        type="text"
+        formControlName="address"><mat-error>Address is required</mat-error></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Mobile Number"
+        type="text"
+        formControlName="mob1" numbersOnly required><mat-error>Number is required</mat-error></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        class="workinput"
+        matInput placeholder="Mobile Number"
+        type="text"
+        formControlName="mob2" numbersOnly></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        class="workinput"
+        matInput placeholder="GST Number"
+        type="text"
+        formControlName="gst_no"></mat-form-field><br>
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="col-md-6">
+              <input type="button" (click)="updatecust()" class="btn btn-flat btn-primary" style="color: white; border-radius: 3px;" value="Update">
+            </div>
+
+            <div class="col-md-6">
+                <input type="button" (click)="deletecust()" class="btn btn-flat btn-danger" style="color: white; border-radius: 3px;" value="Delete">
+              </div>
+              </div>
+          </div>
+
+  </form>
+</div> -->
+
+
+<div class="content" style="text-align: center;">
+
+  <h1 style="font-size: large; font-weight: 500;">Customer Details</h1>
+  <form class="horizontal" [formGroup]="custform">
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Customer Name"
+        type="text"
+        formControlName="customerName"
+        required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Email"
+        type="email"
+        formControlName="email"
+        [pattern]="emailPattern"></mat-form-field><br>
+
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Address"
+        type="text"
+        formControlName="address"><mat-error>Address is wrong</mat-error></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        matInput placeholder="Mobile Number"
+        type="number"  [maxLength]="11"
+        formControlName="mob1" required><mat-error>Number is Wrong</mat-error></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        class="workinput"
+        matInput placeholder="Mobile Number"
+        type="number"
+        formControlName="mob2" [maxLength]="13" numbersOnly></mat-form-field><br>
+    <mat-form-field class="example-full-width" style="width: 80% !important;">
+      <input
+        class="workinput"
+        matInput placeholder="GST Number"
+        type="text"
+        formControlName="gst_no"></mat-form-field><br>
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="col-md-6">
+              <input type="button" (click)="updatecust()" class="btn btn-flat btn-primary" style="color: white; border-radius: 3px;" value="Update">
+            </div>
+
+            <div class="col-md-6">
+                <input type="button" (click)="deletecust()" class="btn btn-flat btn-danger" style="color: white; border-radius: 3px;" value="Delete">
+              </div>
+              </div>
+          </div>
+
+  </form>
+</div>
+
