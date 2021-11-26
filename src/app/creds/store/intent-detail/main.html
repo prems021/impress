@@ -1,0 +1,98 @@
+
+
+
+
+
+ <div *ngIf="l_dets_view" class="content" style="height: 300px;overflow-y: scroll;">
+
+
+      <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+
+<hr style=" height: 2px; background-color: #899c82;">
+
+<h1 style="font-size:large; font-weight: 500; color: dodgerblue;">Select Paper</h1>
+
+  <form class="horizontal" [formGroup]="Work_dets_e">
+     <div class="table-responsive-sm" >
+         <table class="fty"  style="width: 100%;">
+           <thead>
+               <tr>
+                   <th>Paper Name </th>
+                   <th> Paper Type </th>
+                   <th> Requested Qty </th>
+                   <th> Company selected </th>
+                   <th style="width: 20%;"> Released Qty </th>
+
+              </tr>
+         </thead>
+
+      <ng-container  formArrayName="labour_dets">
+       <tr *ngFor="let skill of Work_dets_e.get('labour_dets')['controls']; let i = index" [formGroupName]="i">
+
+           <td>  {{skill.controls.PAPER_NAME.value }}  </td>
+
+
+
+          <td style="width:12%">  <label *ngIf="skill.controls.PAPER_CATEGORY.value == 1"> Roll </label>
+             <label *ngIf="skill.controls.PAPER_CATEGORY.value == 2"> Sheet </label>  </td>
+
+          <td>  {{skill.controls.QTY_REQ.value }} </td>
+
+           <td *ngIf="skill.controls.STATUS_FLAG.value == 1">
+            <mat-select formControlName="COMPANY">
+           <mat-option *ngFor="let label of companies[i]" [value]="label.id">
+             {{label.Company_name}}
+           </mat-option>
+         </mat-select>
+          </td>
+
+          <td  *ngIf="skill.controls.STATUS_FLAG.value == 2 || skill.controls.STATUS_FLAG.value == 3">
+
+           {{skill.controls.COMPANY_ASSIAGNED.value }}
+
+          </td>
+
+           <td *ngIf="skill.controls.STATUS_FLAG.value == 1">
+
+
+
+             <input type="number" style="width: 80%;
+             border: 1px solid;
+             text-align: center;
+             border-radius: 5px;
+             margin-left: 3%;" matInput placeholder="" formControlName="R_QTY">
+
+
+          </td>
+
+          <td *ngIf="skill.controls.STATUS_FLAG.value == 2 || skill.controls.STATUS_FLAG.value == 3">
+
+
+           <label style="text-align: center;">{{ skill.controls.R_QTY.value }}</label>
+
+
+
+        </td>
+
+
+
+
+           <td>   <span *ngIf="skill.controls.STATUS_FLAG.value == 1">  <button mat-raised-button [disabled]="push_disabled"
+             (click)=update_data(i) color="primary"> Release </button>   </span>
+           <span *ngIf="skill.controls.STATUS_FLAG.value == 2|| skill.controls.STATUS_FLAG.value == 3">  <button mat-raised-button  (click)=reled() color="warn"> Released </button>   </span>
+          </td>
+           </tr>   </ng-container>
+           </table>
+           </div>
+           </form>
+           </div>
+
+
+
+
+
+
+
+
+

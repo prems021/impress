@@ -1,0 +1,17 @@
+.fty > tr:nth-child(even) {
+  background-color: #c6f2ff;
+
+}
+.fty tr
+{
+
+  border: 1px solid black;
+  padding: 2px;
+
+}
+.fty > th {
+  border-bottom: 1px solid rgb(36, 21, 21);
+}
+.fty td, th {
+  padding: 5px;
+}

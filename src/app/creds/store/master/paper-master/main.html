@@ -1,0 +1,217 @@
+<div class="row">
+  <div class="col-md-6">
+   
+      <form #papermodel="ngForm" [formGroup]="papermaster" autocomplete="on">
+        <h3>Paper Master</h3>
+
+        <div class="row">
+        <div class="col-md-4">
+          <label><small>Paper Name</small></label><br>
+            <input
+              class="form-control"
+              type="text"
+              palceholder="Paper type"
+              name="Papertype"
+              formControlName="Papertype"
+              style="text-align: center; font-weight: 500;">
+        </div>
+
+        <div class="col-md-3">
+          <label><small>GSM</small></label><br>
+            <input
+              class="form-control"
+              type="text"
+              palceholder="Gsm"
+              name="Gsm"
+              formControlName="Gsm"
+              style="text-align: center; font-weight: 500;">
+        </div>
+        <div class="col-md-3">
+          <label><small>Size</small></label><br>
+            <input
+              class="form-control"
+              type="text"
+              palceholder="Size"
+              name="Size"
+              formControlName="Size"
+              style="text-align: center; font-weight: 500;">
+        </div>
+         </div>
+
+        <div class="col-md-2" style="text-align: center;">
+          <br>
+          <button type="submit" class="btn btn-info" (click)="addpaper()" style="width: 60%; background-color: green; outline: none; border: none;">Save</button>
+        </div>
+
+
+
+      </form>
+
+</div>
+
+
+
+<br><hr>
+
+
+    <div class="col-md-6">
+      <div  [formGroup]="addform">
+      <h3>Company Master</h3>
+      <div class="col-md-4">
+        <label><small>Company</small></label><br>
+          <input
+            class="form-control"
+            type="text"
+            palceholder="Company name"
+            name="Company_name"
+            formControlName="Company_name"
+            style="text-align: center; font-weight: 500;">
+      </div> 
+      <br>
+      <div class="col-md-4">       
+        <button type="submit" class="btn btn-info" (click)="addCompany()" style="width: 30%; background-color: green; outline: none; border: none;">Save</button>
+      </div>
+      </div>
+      </div>
+
+
+
+
+
+</div>
+
+
+<br>
+
+
+
+
+ <div class="row">
+
+
+    <div class="col-md-6">
+
+      <div *ngIf="load_flag == 0" >
+        <app-data-loader> </app-data-loader>
+      </div>
+  
+    <mat-form-field appearance="standard" style="width: 25%;">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+
+
+
+
+    <div class="mat-elevation-z8" >
+
+      <div  class="example-table-container" style="background-color: white">
+        <h2 style="text-align: center">Paper List</h2> </div>
+  
+  
+      <table style="width: 100%;" mat-table [dataSource]="paper_list" matSort>
+  
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef style="color: #311B92;"> Sl.No. </th>
+          <td mat-cell *matCellDef="let row; let i = index;" style="color: #311B92; font-weight: 500;">{{paginator_p.pageIndex*paginator_p.pageSize+(i+1)}}</td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="PaperType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Paper Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.Papertype}} </td>
+        </ng-container>
+  
+   
+  
+  
+        <ng-container matColumnDef="PaperSize">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Paper Size  </th>
+          <td mat-cell *matCellDef="let row">    {{ row.Size }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Gsm">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Paper Gsm  </th>
+          <td mat-cell *matCellDef="let row">    {{ row.Gsm }} </td>
+        </ng-container>
+  
+  
+  
+  
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of intents"></mat-paginator>
+    </div>
+
+     </div>
+
+
+
+
+
+
+
+
+
+   
+
+      
+    <div class="col-md-6">
+
+      <div *ngIf="load_flag == 0" >
+        <app-data-loader> </app-data-loader>
+      </div>
+  
+    <mat-form-field appearance="standard" style="width: 25%;">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter_c($event)" placeholder="Ex. Mia" #inputs>
+    </mat-form-field>
+
+
+
+
+    <div class="mat-elevation-z8" >
+
+      <div  class="example-table-container" style="background-color: white">
+        <h2 style="text-align: center">Company List</h2> </div>
+  
+  
+      <table style="width: 100%;" mat-table [dataSource]="companyinfo" matSort>
+  
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef style="color: #311B92;"> Sl.No. </th>
+          <td mat-cell *matCellDef="let row; let i = index;" style="color: #311B92; font-weight: 500;">{{paginator_p.pageIndex*paginator_p.pageSize+(i+1)}}</td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="Company_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.Company_name}} </td>
+        </ng-container>
+  
+   
+        <tr mat-header-row *matHeaderRowDef="displayedColumns_c"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns_c;"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of intents"></mat-paginator>
+    </div>
+
+
+
+  </div>
+
+</div>
