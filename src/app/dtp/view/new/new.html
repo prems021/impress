@@ -1,0 +1,119 @@
+
+
+
+
+<section  *ngIf="load_flag != 0">
+
+<small class="mb-2">You can use comma separator, to filter by more than one values.</small>
+<div class="columns">
+<div class="column col-12">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="col-3 col-sm-12 col-ml-auto">
+        <input
+          class="form-input"
+          type="text"
+          id="globalSearch"
+          (input)="onChange($event)"
+          placeholder="Search"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="column col-12">
+  <ngx-table [configuration]="configuration" [data]="data_new_work" #table [columns]="columns_new_work"  (event)="onEvent($event)">
+
+    <ng-template let-row>
+      <td>
+        <div class="font-small">  {{ row.workNo }}</div>
+      </td>
+      <td>
+        <span class="font-small">{{ row.workName }}</span>
+      </td>
+
+      <td>
+        <span class="font-small">{{ row.orderDate }}</span>
+      </td>
+
+      <td>
+        <span class="font-small">{{ row.dtp_status }}</span>
+      </td>
+
+
+
+      <td>
+        <!-- <div class="circle" [style.color]="row.isActive ? 'red' : 'green'"></div> -->
+        <div>
+          <form class="horizontal" [formGroup]="dtpform">
+
+
+            <mat-form-field style="width: 30%;">
+              <mat-label>Work Status</mat-label>
+              <mat-select formControlName="dtpstat">
+                <mat-option value="">Select</mat-option>
+                <mat-option value="Customer Awaiting">Customer Awaiting</mat-option>
+                <mat-option value="Correction Pending">Correction Pending</mat-option>
+                <mat-option value="Proof Reading">Proof Reading</mat-option>
+                <mat-option value="Customer Approved" style="color: darkgreen; font-weight: 500;">Customer Approved</mat-option>
+              </mat-select><mat-error>Please select a type</mat-error>
+            </mat-form-field>&nbsp;
+            <button mat-raised-button style="background-color: #009688; color: white;" (click)="changedtpStatus(row.Wid)">Change</button>
+          </form>
+        </div>
+
+      </td>
+
+
+      <td>
+        <button   class="btn btn-primary btn-sm" (click)="showModal(row)">
+          View
+        </button>
+      </td>
+
+      <td>
+
+
+        <button  *ngIf="push_forw ==1" class="btn btn-primary btn-sm pull-right"
+        (click)="Forward(row)" type="button"><span class="glyphicon glyphicon-ok"></span> Forward </button>
+
+        <button  *ngIf="push_forw == 2" class="buttonload btn btn-sm pull-right">
+          <i class="fa fa-spinner fa-spin"></i>updating...
+        </button>
+
+        <button [disabled]="true" *ngIf="push_forw == 3" class="btn btn-sm btn-warning pull-right"
+         type="button"><span class="glyphicon glyphicon-ok"></span> Forwarded </button>
+
+
+      </td>
+
+
+
+
+    </ng-template>
+
+
+  </ngx-table>
+</div>
+</div>
+
+
+</section>
+
+
+<div *ngIf="load_flag == 0">
+  <app-data-loader> </app-data-loader>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

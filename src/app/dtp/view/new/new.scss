@@ -1,0 +1,40 @@
+.circle:before {
+    content: ' \25CF';
+    font-size: 20px;
+  }
+  
+  .row__email {
+    width: 100px;
+  }
+  
+  .row__progressbar {
+    width: 100px;
+  }
+  
+
+  
+  ._all_mobile
+  {
+    overflow-y: scroll;
+    width: 100%;
+    height: 90vh;
+    margin-top: 14%;
+  }
+  ._all_desk
+  {
+    overflow-y: scroll;
+   }
+
+  @media screen and (max-width : 1920px){
+    .mobile{
+      display: none;
+    }
+  }
+  @media screen and (max-width : 906px){
+   .desk{
+    display: none;
+    }
+   .mobile{
+    display: block;
+    }
+  }
