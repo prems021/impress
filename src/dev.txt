@@ -1,0 +1,11 @@
+
+mobile routing
+https://betterprogramming.pub/creating-angular-webapp-for-multiple-views-and-screen-sizes-50fe8a83c433
+
+
+
+
+status_flag   : work order - main
+
+
+ 25
